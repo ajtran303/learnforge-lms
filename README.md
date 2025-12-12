@@ -15,8 +15,6 @@ This project is built to demonstrate clean Rails architecture, role-based access
 
 - Roles: Learner, Instructor, Admin
 
-- Authorization with CanCanCan
-
 📚 Course Management (Instructor)
 
 - Create, edit, delete courses
@@ -59,8 +57,6 @@ This project is built to demonstrate clean Rails architecture, role-based access
 
 - Tailwind CSS
 
-- CanCanCan
-
 - Render or Fly.io deployment (TBD)
 
 There are no file uploads or media attachments in this MVP.
@@ -71,8 +67,6 @@ Backend
 - RESTful Rails controllers
 
 - Service Objects for logic (enrollments, progress updates)
-
-- Cancan authorization
 
 - PostgreSQL schemas with foreign keys + constraints
 
