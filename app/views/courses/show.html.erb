@@ -3,3 +3,11 @@
 <p>Status: <%= @course.status %></p>
 
 <%= notice %>
+
+<% if current_user.instructor? %>
+  <% if @course.draft? %>
+    <%= button_to "Publish", publish_course_path(@course), method: :patch %>
+  <% else %>
+    <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch %>
+  <% end %>
+<% end %>

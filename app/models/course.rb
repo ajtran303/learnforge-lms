@@ -3,4 +3,6 @@ class Course < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true
+
+  def draft? = status == "draft"
 end

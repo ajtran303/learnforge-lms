@@ -42,6 +42,22 @@ class CoursesController < ApplicationController
     redirect_to dashboard_path, notice: "Course deleted successfully"
   end
 
+  def publish
+    @course = current_user.courses.find(params[:id])
+
+    if @course.update(status: "published")
+      redirect_to course_path(@course), notice: "Course published successfully"
+    end
+  end
+
+  def unpublish
+    @course = current_user.courses.find(params[:id])
+
+    if @course.update(status: "draft")
+      redirect_to course_path(@course), notice: "Course reverted to draft"
+    end
+  end
+
   private
 
   def require_login

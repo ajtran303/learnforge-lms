@@ -20,4 +20,12 @@
       </li>
     <% end %>
   </ul>
+
+<% elsif current_user.role == "learner" %>
+  <h2>Available Courses</h2>
+  <ul>
+    <% Course.where(status: "published").each do |course| %>
+      <li><%= course.title %></li>
+    <% end %>
+  </ul>
 <% end %>
