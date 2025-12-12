@@ -37,8 +37,8 @@ RSpec.describe "Course Management", type: :system do
       visit dashboard_path
       click_link "Edit", href: edit_course_path(course)
 
-      fill_in "Couorse Title", with: "Updated Title"
-      fill_in "Couorse Description", with: "Updated Description"
+      fill_in "Course Title", with: "Updated Title"
+      fill_in "Course Description", with: "Updated Description"
       click_button "Update Course"
 
       expect(page).to have_current_path(course_path(course))
@@ -51,6 +51,8 @@ RSpec.describe "Course Management", type: :system do
 
   describe "deleting a course" do
     it "allows instructor to delete a course with confirmation" do
+      driven_by :selenium_chrome_headless
+
       visit dashboard_path
       accept_confirm do
         click_link "Delete", href: course_path(course)
