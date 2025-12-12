@@ -38,6 +38,7 @@ gem "thruster", require: false
 
 group :test do
   gem "capybara"
+  gem "shoulda-matchers", "~> 6.0"
 end
 
 group :development, :test do
