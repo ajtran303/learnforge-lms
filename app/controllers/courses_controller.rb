@@ -19,6 +19,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    @lesson = Lesson.new(course: @course) if current_user&.instructor?
   end
 
   def edit

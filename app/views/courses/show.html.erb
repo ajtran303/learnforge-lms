@@ -4,10 +4,20 @@
 
 <%= notice %>
 
-<% if current_user.instructor? %>
+<% if current_user&.instructor? %>
   <% if @course.draft? %>
     <%= button_to "Publish", publish_course_path(@course), method: :patch %>
   <% else %>
     <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch %>
   <% end %>
+
+  <turbo-frame id="lesson_form">
+    <%= render "lessons/form", lesson: @lesson %>
+  </turbo-frame>
 <% end %>
+
+<h2>Lessons</h2>
+
+<turbo-frame id="lessons">
+  <%= render "lessons/lessons", lessons: @course.lessons %>
+</turbo-frame>
