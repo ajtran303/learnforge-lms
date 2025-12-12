@@ -53,9 +53,11 @@ RSpec.describe "Course Management", type: :system do
     it "allows instructor to delete a course with confirmation" do
       driven_by :selenium_chrome_headless
 
+      login_as(instructor)
       visit dashboard_path
+
       accept_confirm do
-        click_link "Delete", href: course_path(course)
+        click_button "Delete"
       end
 
       expect(page).to have_current_path(dashboard_path)

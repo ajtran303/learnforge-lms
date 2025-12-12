@@ -35,6 +35,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+
+    @course.destroy
+    redirect_to dashboard_path, notice: "Course deleted successfully"
+  end
+
   private
 
   def require_login
