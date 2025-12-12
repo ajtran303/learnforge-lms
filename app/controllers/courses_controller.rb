@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
+    @course = current_user.courses.build(course_params)
     @course.status = "draft"
 
     if @course.save
