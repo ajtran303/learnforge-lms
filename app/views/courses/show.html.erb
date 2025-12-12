@@ -2,6 +2,8 @@
 <p><%= @course.description %></p>
 <p><strong>Instructor:</strong> <%= @course.user.email %></p>
 
+<%= notice %>
+
 <% if current_user&.instructor? %>
   <p>Status: <%= @course.status %></p>
   <% if @course.draft? %>
