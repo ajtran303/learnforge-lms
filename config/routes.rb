@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   get "/sign_in", to: "sessions#new", as: :new_session
   post "/sign_in", to: "sessions#create", as: :session
   delete "/logout", to: "sessions#destroy", as: :logout
+
+  get "/courses", to: "courses#new", as: :new_course
+
+  get "/admin", to: "admin#dashboard", as: :admin
 end

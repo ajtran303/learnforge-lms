@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user.role = "learner"
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to dashboard_path, notice: "Welcome, #{@user.email}!"
     else
       render :new, status: :unprocessable_entity
