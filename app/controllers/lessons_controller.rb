@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
   before_action :require_login
-  before_action :require_instructor
+  before_action :require_instructor, except: :show
   before_action :set_course
 
   def create
