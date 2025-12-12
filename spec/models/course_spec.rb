@@ -4,8 +4,9 @@ RSpec.describe Course, type: :model do
   subject { described_class.new(title: "Intro to Ruby", description: "Learn Ruby basics") }
 
   describe "associations" do
+    it { should belong_to(:user) }
     it { should have_many :lessons }
-  end
+    it { should have_and_belong_to_many(:enrolled_users).class_name('User').join_table('courses_users') }  end
 
   describe "validations" do
     it { should validate_presence_of(:title) }

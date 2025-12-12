@@ -3,6 +3,11 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   subject { described_class.new(email: "learner@example.com", password: "password", password_confirmation: "password") }
 
+  describe "associations" do
+    it { should have_and_belong_to_many(:enrolled_courses).class_name('Course').join_table('courses_users') }
+    it { should have_many(:courses).dependent(:destroy) }
+  end
+
   describe "validations" do
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:password) }
