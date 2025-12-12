@@ -73,10 +73,22 @@ RSpec.describe "Role-Based Access Control", type: :system do
   end
 
   context "Unauthorized access" do
-    it "redirects anonymous user to login page" do
+    it "redirects anonymous user from course page to login page" do
       visit new_course_path
       expect(page).to have_current_path(new_session_path)
       expect(page).to have_content("You must be logged in")
+    end
+
+    it "redirects anonymous user from dashboard page to login page" do
+      visit dashboard_path
+      expect(page).to have_current_path(new_session_path)
+      expect(page).to have_content("You must be logged in")
+    end
+
+    it "cannot access the admin page" do
+      visit admin_path
+      expect(page).to have_content("Forbidden")
+      expect(page.status_code).to eq(403)
     end
   end
 end
