@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :lesson do
-    title { "Sample Lesson Title" }
-    content { "Sample lesson content" }
+    sequence(:title) { |n| "Lesson #{n}" }
+    sequence(:content) { |n| "Content #{n}" }
     course
   end
 end
