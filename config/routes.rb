@@ -23,5 +23,8 @@ Rails.application.routes.draw do
   patch "/courses/:id/publish", to: "courses#publish",  as: :publish_course
   patch "/courses/:id/unpublish", to: "courses#unpublish",  as: :unpublish_course
 
+  get "/courses/:course_id/lessons/new", to: "lessons#new", as: "new_course_lesson"
+  post "/courses/:course_id/lessons", to: "lessons#create", as: "course_lessons"
+
   get "/admin", to: "admin#dashboard", as: :admin
 end

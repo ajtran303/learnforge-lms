@@ -12,7 +12,7 @@
   <ul>
     <% current_user.courses.each do |course| %>
       <li>
-        <strong><%= course.title %></strong>
+        <strong><%= link_to course.title, course_path(course) %></strong>
         <%= link_to "Edit", edit_course_path(course) %>
         <%= button_to "Delete", course_path(course),
             method: :delete,

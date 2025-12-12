@@ -11,3 +11,18 @@
     <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch %>
   <% end %>
 <% end %>
+
+<% if current_user.instructor? %>
+  <turbo-frame id="lesson_form">
+    <%= render "lessons/form", lesson: @lesson %>
+  </turbo-frame>
+<% end %>
+
+<turbo-frame id="lessons">
+  <% @course.lessons.each do |lesson| %>
+    <div class="lesson">
+      <h3><%= lesson.title %></h3>
+      <div class="lesson-content"><%= lesson.content.html_safe %></div>
+    </div>
+  <% end %>
+</turbo-frame>
