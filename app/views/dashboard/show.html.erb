@@ -6,4 +6,15 @@
 
 <% if current_user.role == "instructor" %>
   <%= link_to "Create Course", new_course_path %>
+
+  <h2>Your Courses</h2>
+
+  <ul>
+    <% current_user.courses.each do |course| %>
+      <li>
+        <strong><%= course.title %></strong>
+        <%= link_to "Edit", edit_course_path(course) %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/courses/new", to: "courses#new", as: :new_course
   post "/courses", to: "courses#create", as: :courses
   get "/courses/:id", to: "courses#show", as: :course
+  get "/courses/:id/edit", to: "courses#edit", as: :edit_course
+  patch "/courses/:id", to: "courses#update"
 
   get "/admin", to: "admin#dashboard", as: :admin
 end
