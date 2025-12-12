@@ -5,5 +5,7 @@ class Course < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
 
+  scope :published, -> { where(status: "published") }
+
   def draft? = status == "draft"
 end

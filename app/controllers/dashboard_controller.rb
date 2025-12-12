@@ -1,6 +1,7 @@
 class DashboardController < ApplicationController
   before_action :require_login
   def show
+    @courses = Course.published
   end
 
   def require_login

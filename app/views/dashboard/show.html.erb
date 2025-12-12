@@ -24,8 +24,12 @@
 <% elsif current_user.role == "learner" %>
   <h2>Available Courses</h2>
   <ul>
-    <% Course.where(status: "published").each do |course| %>
-      <li><%= course.title %></li>
+    <% @courses.each do |course| %>
+      <li>
+        <strong><%= link_to course.title, course_path(course) %></strong><br>
+        <em><%= truncate(course.description, length: 150) %></em><br>
+        <p><strong>Instructor:</strong> <%= course.user.email %></p>
+      </li>
     <% end %>
   </ul>
 <% end %>

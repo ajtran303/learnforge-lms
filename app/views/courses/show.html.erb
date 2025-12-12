@@ -1,10 +1,9 @@
 <h1><%= @course.title %></h1>
 <p><%= @course.description %></p>
-<p>Status: <%= @course.status %></p>
-
-<%= notice %>
+<p><strong>Instructor:</strong> <%= @course.instructor.email %></p>
 
 <% if current_user&.instructor? %>
+  <p>Status: <%= @course.status %></p>
   <% if @course.draft? %>
     <%= button_to "Publish", publish_course_path(@course), method: :patch %>
   <% else %>
@@ -16,12 +15,15 @@
   </turbo-frame>
 <% end %>
 
+<% if current_user.role == "learner" %>
+  <%= button_to "Enroll in this Course", enroll_course_path(@course), method: :post %>
+<% end %>
+
 <h2>Lessons</h2>
 
 <% if flash[:lesson_deleted] %>
   <p class="flash lesson-deleted"><%= flash[:lesson_deleted] %></p>
 <% end %>
-
 
 <turbo-frame id="lessons">
   <%= render "lessons/lessons", lessons: @course.lessons %>
