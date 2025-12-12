@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Course Management", type: :system do
   let!(:instructor) { FactoryBot.create(:user, role: "instructor") }
+  let!(:course) { FactoryBot.create(:course, title: "Old Title", description: "Old Description", user: instructor) }
 
   before do
     driven_by(:rack_test)
@@ -29,5 +30,35 @@ RSpec.describe "Course Management", type: :system do
 
     expect(page).to have_content("Title can't be blank")
     expect(page).to have_content("Description can't be blank")
+  end
+
+  describe "editing a course" do
+    it "allows instructor to update course details" do
+      visit dashboard_path
+      click_link "Edit", href: edit_course_path(course)
+
+      fill_in "Couorse Title", with: "Updated Title"
+      fill_in "Couorse Description", with: "Updated Description"
+      click_button "Update Course"
+
+      expect(page).to have_current_path(course_path(course))
+      expect(page).to have_content("Course updated successfully")
+
+      expect(course.reload.title).to eq("Updated Title")
+      expect(course.reload.description).to eq("Updated Description")
+    end
+  end
+
+  describe "deleting a course" do
+    it "allows instructor to delete a course with confirmation" do
+      visit dashboard_path
+      accept_confirm do
+        click_link "Delete", href: course_path(course)
+      end
+
+      expect(page).to have_current_path(dashboard_path)
+      expect(page).to have_content("Course deleted successfully")
+      expect(Course.exists?(course.id)).to be_falsey
+    end
   end
 end
