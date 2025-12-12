@@ -20,11 +20,14 @@ Rails.application.routes.draw do
   get "/courses/:id/edit", to: "courses#edit", as: :edit_course
   patch "/courses/:id", to: "courses#update"
   delete "/courses/:id", to: "courses#destroy"
-  patch "/courses/:id/publish", to: "courses#publish",  as: :publish_course
-  patch "/courses/:id/unpublish", to: "courses#unpublish",  as: :unpublish_course
+  patch "/courses/:id/publish", to: "courses#publish", as: :publish_course
+  patch "/courses/:id/unpublish", to: "courses#unpublish", as: :unpublish_course
 
-  get "/courses/:course_id/lessons/new", to: "lessons#new", as: "new_course_lesson"
-  post "/courses/:course_id/lessons", to: "lessons#create", as: "course_lessons"
+  get "/courses/:course_id/lessons/new", to: "lessons#new", as: :new_course_lesson
+  post "/courses/:course_id/lessons", to: "lessons#create", as: :course_lessons
+  get "/courses/:course_id/lessons/:id/edit", to: "lessons#edit", as: :edit_course_lesson
+  patch "/courses/:course_id/lessons/:id", to: "lessons#update", as: :course_lesson
+  delete "/courses/:course_id/lessons/:id", to: "lessons#destroy"
 
   get "/admin", to: "admin#dashboard", as: :admin
 end

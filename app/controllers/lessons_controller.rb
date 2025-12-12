@@ -17,6 +17,46 @@ class LessonsController < ApplicationController
     end
   end
 
+  def show
+    @lesson = @course.lessons.find(params[:id])
+  end
+
+  def edit
+    @lesson = @course.lessons.find(params[:id])
+  end
+
+  def update
+      @lesson = @course.lessons.find(params[:id])
+
+    if @lesson.update(lesson_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to course_path(@course), notice: "Lesson updated successfully" }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @lesson = @course.lessons.find(params[:id])
+    @lesson.destroy
+
+    respond_to do |format|
+      format.html do
+        flash[:lesson_deleted] = "Lesson deleted successfully"
+        redirect_to course_path(@course)
+      end
+      format.turbo_stream do
+        flash.now[:lesson_deleted] = "Lesson deleted successfully" # for Turbo
+        render turbo_stream: turbo_stream.remove(@lesson)
+      end
+    end
+  end
+
   private
 
   def require_login

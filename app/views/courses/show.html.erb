@@ -18,6 +18,11 @@
 
 <h2>Lessons</h2>
 
+<% if flash[:lesson_deleted] %>
+  <p class="flash lesson-deleted"><%= flash[:lesson_deleted] %></p>
+<% end %>
+
+
 <turbo-frame id="lessons">
   <%= render "lessons/lessons", lessons: @course.lessons %>
 </turbo-frame>
