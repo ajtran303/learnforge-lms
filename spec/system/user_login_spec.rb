@@ -35,7 +35,7 @@ RSpec.describe "User Login", type: :system do
     fill_in "Password", with: "password"
     click_button "Sign In"
 
-    click_link "Log out"
+    click_button "Log out"
 
     expect(page).to have_current_path(new_session_path)
     expect(page).to have_content("Logged out successfully!")
