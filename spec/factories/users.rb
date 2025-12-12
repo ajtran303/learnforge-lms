@@ -4,5 +4,9 @@ FactoryBot.define do
     password { "password" }
     password_confirmation { "password" }
     role { "learner" }
+
+    trait :instructor do
+      role { "instructor" }
+    end
   end
 end
