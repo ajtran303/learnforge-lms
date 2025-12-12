@@ -32,6 +32,7 @@ RSpec.describe "Course Detail Page", type: :system do
       visit course_path(course)
 
       expect(page).not_to have_button("Enroll in this Course")
+      expect(page).to have_content("You are already enrolled in this course.")
     end
   end
 end
