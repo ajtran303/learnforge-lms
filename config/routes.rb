@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get "/courses/:id/edit", to: "courses#edit", as: :edit_course
   patch "/courses/:id", to: "courses#update"
   delete "/courses/:id", to: "courses#destroy"
+  patch "/courses/:id/publish", to: "courses#publish",  as: :publish_course
+  patch "/courses/:id/unpublish", to: "courses#unpublish",  as: :unpublish_course
 
   get "/admin", to: "admin#dashboard", as: :admin
 end

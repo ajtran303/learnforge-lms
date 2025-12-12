@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :course do
-    title { "Intro to Ruby" }
+    sequence(:title) { |n| "Ruby 10#{n}" }
     description { "Learn Ruby basics" }
   end
 end
