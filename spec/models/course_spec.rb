@@ -15,7 +15,9 @@ RSpec.describe Course, type: :model do
     end
 
     it "has a default status of 'draft' after saving" do
-      course = FactoryBot.create(:course)
+      instructor = FactoryBot.create(:user, role: "instructor")
+
+      course = FactoryBot.create(:course, user: instructor)
       expect(course.status).to eq("draft")
     end
   end

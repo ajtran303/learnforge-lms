@@ -1,0 +1,21 @@
+<h1>Edit Course</h1>
+
+<%= form_with model: @course, local: true do |f| %>
+   <fieldset>
+    <legend>Course Details</legend>
+
+    <div>
+      <%= f.label :title, "Course Title" %>
+      <%= f.text_field :title, required: true %>
+    </div>
+
+    <div>
+      <%= f.label :description, "Course Description" %>
+      <%= f.text_area :description, required: true %>
+    </div>
+
+    <div>
+      <%= f.submit "Update Course" %>
+    </div>
+  </fieldset>
+<% end %>

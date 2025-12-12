@@ -24,6 +24,10 @@
   </head>
 
   <body>
+    <% if current_user%>
+      <%= link_to "Dashboard", dashboard_path %>
+    <% end %>
+
     <% if session[:user_id] %>
       <%= link_to "Log out", logout_path, method: :delete %>
     <% end %>

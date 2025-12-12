@@ -40,6 +40,7 @@ group :test do
   gem "capybara"
   gem "launchy"
   gem "shoulda-matchers", "~> 6.0"
+  gem "selenium-webdriver"
 end
 
 group :development, :test do

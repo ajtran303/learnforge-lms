@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   end
 
   def create
-    @course = Course.new(course_params)
+    @course = current_user.courses.build(course_params)
     @course.status = "draft"
 
     if @course.save
@@ -19,6 +19,27 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+  end
+
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+
+    if @course.update(course_params)
+      redirect_to course_path(@course), notice: "Course updated successfully"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+
+    @course.destroy
+    redirect_to dashboard_path, notice: "Course deleted successfully"
   end
 
   private
