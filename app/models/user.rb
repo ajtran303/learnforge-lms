@@ -12,4 +12,5 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   def instructor? = role == "instructor"
+  def learner? = role == "learner"
 end

@@ -59,6 +59,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  def enroll
+    @course = Course.find(params[:id])
+    current_user.enrolled_courses << @course unless current_user.enrolled_courses.include?(@course)
+
+    redirect_to course_lesson_show_path(@course, @course.lessons.first), notice: "You have successfully enrolled in the course!"
+  end
+
   private
 
   def require_login
