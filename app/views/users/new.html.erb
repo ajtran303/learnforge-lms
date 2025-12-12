@@ -11,16 +11,16 @@
 
     <div>
       <label for="user_password">Password</label>
-      <%= f.password_field :password, id: "user_password", required: true%>
+      <%= f.password_field :password, id: "user_password", required: true %>
     </div>
 
     <div>
-      <label for="user_password">Password confirmation</label>
-      <%= f.password_field :password_confirmation, id: "user_password_confirmation", required: true%>
+      <label for="user_password_confirmation">Password confirmation</label>
+      <%= f.password_field :password_confirmation, id: "user_password_confirmation", required: true %>
     </div>
 
     <div>
-      <%= f.submit "Sign Up"%>
+      <%= f.submit "Sign Up", data: { disable_with: nil } %>
     </div>
   </fieldset>
 <% end %>
