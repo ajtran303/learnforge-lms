@@ -3,3 +3,7 @@
 <% if flash[:notice] %>
   <p class="flash notice"><%= flash[:notice] %></p>
 <% end %>
+
+<% if current_user.role == "instructor" %>
+  <%= link_to "Create Course", new_course_path %>
+<% end %>
