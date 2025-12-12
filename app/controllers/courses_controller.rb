@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :require_login
-  before_action :require_instructor
+  before_action :require_instructor, only: [ :new, :create, :edit, :update, :destroy ]
 
   def new
     @course = Course.new
