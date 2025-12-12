@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   post "/sign_in", to: "sessions#create", as: :session
   delete "/logout", to: "sessions#destroy", as: :logout
 
-  get "/courses", to: "courses#new", as: :new_course
+  get "/courses/new", to: "courses#new", as: :new_course
+  post "/courses", to: "courses#create", as: :courses
+  get "/courses/:id", to: "courses#show", as: :course
 
   get "/admin", to: "admin#dashboard", as: :admin
 end

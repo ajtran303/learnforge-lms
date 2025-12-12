@@ -1,4 +1,4 @@
-reqeuire "rails_helper"
+require "rails_helper"
 
 RSpec.describe "Course Management", type: :system do
   let!(:instructor) { FactoryBot.create(:user, role: "instructor") }
@@ -11,8 +11,8 @@ RSpec.describe "Course Management", type: :system do
   it "allows an instructor to create a course with valid details" do
     visit new_course_path
 
-    fill_in "Title", with: "Intro to Ruby"
-    fill_in "Description", with: "Learn Ruby basics"
+    fill_in "Course Title", with: "Intro to Ruby"
+    fill_in "Course Description", with: "Learn Ruby basics"
     click_button "Create Course"
 
     expect(page).to have_current_path(course_path(Course.last))
@@ -21,8 +21,10 @@ RSpec.describe "Course Management", type: :system do
   end
 
   it "shows validation errors when invalid" do
-    fill_in "Title", with: ""
-    fill_in "Description", with: ""
+    visit new_course_path
+
+    fill_in "Course Title", with: ""
+    fill_in "Course Description", with: ""
     click_button "Create Course"
 
     expect(page).to have_content("Title can't be blank")

@@ -6,6 +6,21 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+  def create
+    @course = Course.new(course_params)
+    @course.status = "draft"
+
+    if @course.save
+      redirect_to course_path(@course), notice: "Course created successfully"
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    @course = Course.find(params[:id])
+  end
+
   private
 
   def require_login
@@ -16,5 +31,9 @@ class CoursesController < ApplicationController
 
   def require_instructor
     render plain: "Forbidden", status: :forbidden unless current_user&.role == "instructor"
+  end
+
+  def course_params
+    params.require(:course).permit(:title, :description)
   end
 end
