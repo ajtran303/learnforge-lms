@@ -4,27 +4,20 @@
 
 <%= notice %>
 
-<% if current_user.instructor? %>
+<% if current_user&.instructor? %>
   <% if @course.draft? %>
     <%= button_to "Publish", publish_course_path(@course), method: :patch %>
   <% else %>
     <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch %>
   <% end %>
-<% end %>
 
-<% if current_user.instructor? %>
   <turbo-frame id="lesson_form">
     <%= render "lessons/form", lesson: @lesson %>
   </turbo-frame>
 <% end %>
 
+<h2>Lessons</h2>
+
 <turbo-frame id="lessons">
-  <% @course.lessons.each do |lesson| %>
-    <div class="lesson">
-      <h3><%= lesson.title %></h3>
-      <div class="lesson-content">
-        <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
-      </div>
-    </div>
-  <% end %>
+  <%= render "lessons/lessons", lessons: @course.lessons %>
 </turbo-frame>

@@ -3,25 +3,24 @@ class LessonsController < ApplicationController
   before_action :require_instructor
   before_action :set_course
 
-  def new
-    @lesson = @course.lessons.new
-  end
-
   def create
     @lesson = @course.lessons.new(lesson_params)
+
     if @lesson.save
-      redirect_to course_path(@course), notice: "Lesson created successfully"
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to course_path(@course), notice: "Lesson created successfully" }
+      end
     else
-      render :new, status: :unprocessable_entity
+      @course = @lesson.course
+      render "courses/show", status: :unprocessable_entity
     end
   end
 
   private
 
   def require_login
-    unless current_user
-      redirect_to new_session_path, alert: "You must be logged in"
-    end
+    redirect_to new_session_path, alert: "You must be logged in" unless current_user
   end
 
   def require_instructor
