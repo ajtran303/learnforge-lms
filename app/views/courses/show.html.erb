@@ -22,7 +22,9 @@
   <% @course.lessons.each do |lesson| %>
     <div class="lesson">
       <h3><%= lesson.title %></h3>
-      <div class="lesson-content"><%= lesson.content.html_safe %></div>
+      <div class="lesson-content">
+        <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
+      </div>
     </div>
   <% end %>
 </turbo-frame>
