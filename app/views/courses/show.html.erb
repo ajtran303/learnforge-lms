@@ -1,6 +1,6 @@
 <h1><%= @course.title %></h1>
 <p><%= @course.description %></p>
-<p><strong>Instructor:</strong> <%= @course.instructor.email %></p>
+<p><strong>Instructor:</strong> <%= @course.user.email %></p>
 
 <% if current_user&.instructor? %>
   <p>Status: <%= @course.status %></p>
