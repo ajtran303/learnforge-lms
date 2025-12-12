@@ -1,6 +1,6 @@
 # LearnForge LMS (Ruby on Rails)
 
-A lightweight Learning Management System built as a full-stack Rails MVP.
+A lightweight Learning Management System built as a full-stack Rails MVP. Track dev progress on the [issues page](https://github.com/ajtran303/learnforge-lms/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acreated-asc).
 
 ## 🚀 Overview
 
