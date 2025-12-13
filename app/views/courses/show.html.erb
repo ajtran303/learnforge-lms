@@ -35,6 +35,10 @@
 
 <h2>Lessons</h2>
 
+<div id="flash">
+  <%= render "shared/flash" %>
+</div>
+
 <% if flash[:lesson_deleted] %>
   <p class="flash lesson-deleted"><%= flash[:lesson_deleted] %></p>
 <% end %>
