@@ -27,7 +27,7 @@
     <% @courses.each do |course| %>
       <li>
         <strong><%= link_to course.title, course_path(course) %></strong><br>
-        <em><%= truncate(course.description, length: 150) %></em><br>
+        <%# <em><%= truncate(course.description, length: 150)</em><br> %>
         <p><strong>Instructor:</strong> <%= course.user.email %></p>
       </li>
     <% end %>

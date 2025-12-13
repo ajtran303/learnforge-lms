@@ -22,6 +22,8 @@
 <% if current_user.role == "learner" %>
   <% if current_user.enrolled_courses.include?(@course) %>
     <p>You are already enrolled in this course.</p>
+
+    <%= link_to "Start Course", course_lesson_show_path(@course, @course.lessons.first) %>
   <% else %>
     <%= button_to "Enroll in this Course", enroll_course_path(@course), method: :post %>
   <% end %>
