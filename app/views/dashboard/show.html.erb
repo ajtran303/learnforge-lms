@@ -28,7 +28,7 @@
     <% @courses.each do |course| %>
       <li>
         <strong><%= link_to course.title, course_path(course) %></strong><br>
-        <%# <em><%= truncate(course.description, length: 150)</em><br> %>
+        <em><%= course.description %></em><br>
         <p><strong>Instructor:</strong> <%= course.user.email %></p>
         <div id="course_<%= course.id %>_progress">
           <%= course_progress_percentage(course, current_user) %>% Complete
