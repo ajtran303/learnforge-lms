@@ -32,5 +32,8 @@ Rails.application.routes.draw do
   patch "/courses/:course_id/lessons/:id", to: "lessons#update", as: :course_lesson
   delete "/courses/:course_id/lessons/:id", to: "lessons#destroy"
 
+  post "/courses/:course_id/lessons/:id/complete", to: "lesson_completions#create", as: :complete_course_lesson
+
+
   get "/admin", to: "admin#dashboard", as: :admin
 end

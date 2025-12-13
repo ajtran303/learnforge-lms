@@ -6,7 +6,7 @@
   <nav>
     <ul>
       <% @course.lessons.each do |lesson| %>
-        <li class="<%= "active" if lesson == @lesson  %>">
+        <li class="<%= "active" if lesson == @lesson %>">
           <%= link_to lesson.title, course_lesson_show_path(@course, lesson) %>
         </li>
       <% end %>
@@ -20,9 +20,13 @@
     <p><%= @lesson.content %></p>
   </article>
 
+  <turbo-frame id="lesson_completion">
+    <%= render "lessons/lesson_completion", lesson: @lesson %>
+  </turbo-frame>
+
   <nav class="lesson-nav" aria-label="Lesson navigation">
     <div class="prev-next">
-      <% lessons = @course.lessons %>
+      <% lessons = @course.lessons.to_a %>
       <% index = lessons.index(@lesson) %>
 
       <% if index > 0 %>

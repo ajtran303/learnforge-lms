@@ -19,6 +19,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = @course.lessons.find(params[:id])
+    @course = @lesson.course
   end
 
   def edit
