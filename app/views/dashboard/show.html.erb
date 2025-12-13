@@ -12,7 +12,8 @@
   <ul>
     <% current_user.courses.each do |course| %>
       <li>
-        <strong><%= link_to course.title, course_path(course) %></strong>
+        <strong><%= link_to course.title, course_path(course) %></strong><br>
+        <em><%= course.description %></em><br>
         <p>Status: <%= course.status %></p>
         <%= link_to "Edit", edit_course_path(course) %>
         <%= button_to "Delete", course_path(course),
