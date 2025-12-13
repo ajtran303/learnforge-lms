@@ -87,9 +87,8 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: learnforge_lms_production
-    username: learnforge_lms
-    password: <%= ENV["LEARNFORGE_LMS_DATABASE_PASSWORD"] %>
+    database: learnforge_lms_db
+    url: <%= ENV["DATABASE_URL"] %>
   cache:
     <<: *primary_production
     database: learnforge_lms_production_cache
