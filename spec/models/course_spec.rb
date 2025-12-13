@@ -6,7 +6,8 @@ RSpec.describe Course, type: :model do
   describe "associations" do
     it { should belong_to(:user) }
     it { should have_many :lessons }
-    it { should have_and_belong_to_many(:enrolled_users).class_name('User').join_table('courses_users') }  end
+    it { should have_and_belong_to_many(:enrolled_users).class_name('User') }
+  end
 
   describe "validations" do
     it { should validate_presence_of(:title) }

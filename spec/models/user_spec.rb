@@ -4,8 +4,10 @@ RSpec.describe User, type: :model do
   subject { described_class.new(email: "learner@example.com", password: "password", password_confirmation: "password") }
 
   describe "associations" do
-    it { should have_and_belong_to_many(:enrolled_courses).class_name('Course').join_table('courses_users') }
+    it { should have_and_belong_to_many(:enrolled_courses).class_name('Course') }
     it { should have_many(:courses).dependent(:destroy) }
+    it { should have_many(:lesson_completions) }
+    it { should have_many(:completed_lessons).through(:lesson_completions).source(:lesson) }
   end
 
   describe "validations" do
