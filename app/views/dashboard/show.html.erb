@@ -12,7 +12,9 @@
   <ul>
     <% current_user.courses.each do |course| %>
       <li>
-        <strong><%= link_to course.title, course_path(course) %></strong>
+        <strong><%= link_to course.title, course_path(course) %></strong><br>
+        <em><%= course.description %></em><br>
+        <p>Status: <%= course.status %></p>
         <%= link_to "Edit", edit_course_path(course) %>
         <%= button_to "Delete", course_path(course),
             method: :delete,
@@ -27,7 +29,7 @@
     <% @courses.each do |course| %>
       <li>
         <strong><%= link_to course.title, course_path(course) %></strong><br>
-        <%# <em><%= truncate(course.description, length: 150)</em><br> %>
+        <em><%= course.description %></em><br>
         <p><strong>Instructor:</strong> <%= course.user.email %></p>
         <div id="course_<%= course.id %>_progress">
           <%= course_progress_percentage(course, current_user) %>% Complete
