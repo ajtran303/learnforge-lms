@@ -1,2 +1,37 @@
-<h1><%= @lesson.title %></h1>
-<p><%= @lesson.content %></p>
+<header class="course-header">
+  <h1 class="course-title"><%= @course.title %></h1>
+</header>
+
+<aside class="lessons-sidebar" aria-label="Lesson navigation">
+  <nav>
+    <ul>
+      <% @course.lessons.each do |lesson| %>
+        <li class="<%= "active" if lesson == @lesson  %>">
+          <%= link_to lesson.title, course_lesson_show_path(@course, lesson) %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</aside>
+
+<main class="lesson-content" aria-labelledby="lesson-title">
+  <h2 id="lesson-title"><%= @lesson.title %></h2>
+  <article>
+    <p><%= @lesson.content %></p>
+  </article>
+
+  <nav class="lesson-nav" aria-label="Lesson navigation">
+    <div class="prev-next">
+      <% lessons = @course.lessons %>
+      <% index = lessons.index(@lesson) %>
+
+      <% if index > 0 %>
+        <%= link_to "Previous Lesson", course_lesson_show_path(@course, lessons[index - 1]), class: "previous-lesson" %>
+      <% end %>
+
+      <% if index < lessons.length - 1 %>
+        <%= link_to "Next Lesson", course_lesson_show_path(@course, lessons[index + 1]), class: "next-lesson" %>
+      <% end %>
+    </div>
+  </nav>
+</main>
