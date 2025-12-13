@@ -5,6 +5,8 @@
     <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
   </div>
   
-  <%= link_to "Edit", edit_course_lesson_path(@course, lesson) %>
-  <%= button_to "Delete", course_lesson_path(@course, lesson), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this lesson?" } %>
+  <% if current_user.instructor? %>
+    <%= link_to "Edit", edit_course_lesson_path(@course, lesson) %>
+    <%= button_to "Delete", course_lesson_path(@course, lesson), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this lesson?" } %>
+  <% end %>
 </div>
