@@ -21,5 +21,8 @@ RSpec.describe "Course Management", type: :system do
 
       expect(page).not_to have_content(course2.title)
     end
+
+    it "displays enrolled courses" do
+    end
   end
 end

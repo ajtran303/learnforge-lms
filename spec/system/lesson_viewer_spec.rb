@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Lesson Viewer", type: :system do
   let!(:instructor) { FactoryBot.create(:user, :instructor) }
   let!(:learner) { FactoryBot.create(:user) }
-  let!(:course) { FactoryBot.create(:course, user: instructor) }
+  let!(:course) { FactoryBot.create(:course, user: instructor, status: "published") }
 
   let!(:lesson1) { FactoryBot.create(:lesson, course: course) }
   let!(:lesson2) { FactoryBot.create(:lesson, course: course) }
@@ -16,6 +16,16 @@ RSpec.describe "Lesson Viewer", type: :system do
   end
 
   context "as a learner with an enrolled course" do
+    it "can navigate to the lesson viewer" do
+      visit dashboard_path
+      click_link course.title
+      expect(page).to have_current_path(course_path(course))
+      save_and_open_page
+      click_link "Start Course"
+
+      expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
+    end
+
     it "shows lesson content" do
       visit course_lesson_show_path(course, lesson1)
 
