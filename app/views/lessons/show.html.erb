@@ -2,6 +2,11 @@
   <h1 class="course-title"><%= @course.title %></h1>
 </header>
 
+<div id="course_<%= @course.id %>_progress">
+  <%= course_progress_percentage(@course, current_user) %>% Complete
+</div>
+
+
 <aside class="lessons-sidebar" aria-label="Lesson navigation">
   <nav>
     <ul>
