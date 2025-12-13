@@ -1,1 +1,5 @@
-<%= render "lessons/form", lesson: @lesson %>
+<turbo-frame id="lesson_form">
+  <h2>Edit Lesson</h2>
+
+  <%= render "/lessons/form", lesson: @lesson %>
+</turbo-frame>

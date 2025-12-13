@@ -6,7 +6,7 @@
   </div>
   
   <% if current_user.instructor? %>
-    <%= link_to "Edit", edit_course_lesson_path(@course, lesson) %>
+    <%= link_to "Edit", edit_course_lesson_path(@course, lesson), data: { turbo_frame: "lesson_form" } %>
     <%= button_to "Delete", course_lesson_path(@course, lesson), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this lesson?" } %>
   <% end %>
 </div>

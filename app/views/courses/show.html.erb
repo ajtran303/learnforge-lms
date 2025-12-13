@@ -2,7 +2,9 @@
 <p><%= @course.description %></p>
 <p><strong>Instructor:</strong> <%= @course.user.email %></p>
 
-<%= notice %>
+<div id="flash">
+  <%= notice %>
+</div>
 
 <% if current_user&.instructor? %>
   <p>Status: <%= @course.status %></p>
@@ -13,7 +15,7 @@
   <% end %>
 
   <turbo-frame id="lesson_form">
-    <%= render "lessons/form", lesson: @lesson %>
+    <%= render "lessons/form", lesson: Lesson.new(course: @course) %>
   </turbo-frame>
 <% end %>
 

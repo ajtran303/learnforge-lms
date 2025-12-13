@@ -7,6 +7,8 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.new(lesson_params)
 
     if @lesson.save
+      flash[:notice] = "Lesson created successfully"
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to course_path(@course), notice: "Lesson created successfully" }
@@ -27,18 +29,17 @@ class LessonsController < ApplicationController
   end
 
   def update
-      @lesson = @course.lessons.find(params[:id])
+    @lesson = @course.lessons.find(params[:id])
 
     if @lesson.update(lesson_params)
+      flash.now[:notice] = "Lesson updated successfully"
+
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to course_path(@course), notice: "Lesson updated successfully" }
       end
     else
-      respond_to do |format|
-        format.turbo_stream
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+      render :edit, status: :unprocessable_entity
     end
   end
 
