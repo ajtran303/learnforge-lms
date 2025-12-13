@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   describe "associations" do
     it { should have_and_belong_to_many(:enrolled_courses).class_name('Course') }
     it { should have_many(:courses).dependent(:destroy) }
-
+    it { should have_many(:lesson_completions) }
     it { should have_many(:completed_lessons).through(:lesson_completions).source(:lesson) }
   end
 

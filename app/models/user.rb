@@ -7,6 +7,9 @@ class User < ApplicationRecord
     join_table: "courses_users",
     foreign_key: "user_id",
     association_foreign_key: "course_id"
+  has_many :lesson_completions, dependent: :destroy
+  has_many :completed_lessons, through: :lesson_completions, source: :lesson
+
 
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
