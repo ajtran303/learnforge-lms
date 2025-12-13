@@ -20,7 +20,7 @@ RSpec.describe "Lesson Viewer", type: :system do
       visit dashboard_path
       click_link course.title
       expect(page).to have_current_path(course_path(course))
-      save_and_open_page
+
       click_link "Start Course"
 
       expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
