@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "lesson_completion" do %>
+  <%= render "lessons/lesson_completion", lesson: @lesson %>
+<% end %>
+
+<%= turbo_stream.replace "course_#{@course.id}_progress" do %>
+  <%= render "shared/course_progress", course: @course, user: current_user %>
+<% end %>

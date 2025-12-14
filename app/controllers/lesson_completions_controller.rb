@@ -3,16 +3,12 @@ class LessonCompletionsController < ApplicationController
   before_action :set_course_and_lesson
 
   def create
-    current_user.completed_lessons << @lesson unless current_user.completed_lessons.include?(@lesson)
+    unless current_user.completed_lessons.include?(@lesson)
+      LessonCompletion.find_or_create_by!(user: current_user, lesson: @lesson)
+    end
 
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace(
-          "lesson_completion",
-          partial: "lessons/lesson_completion",
-          locals: { lesson: @lesson }
-        )
-      end
+      format.turbo_stream
       format.html { redirect_to course_lesson_show_path(@course, @lesson), notice: "Completed" }
     end
   end
