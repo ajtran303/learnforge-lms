@@ -16,12 +16,39 @@ RSpec.describe "Lesson Viewer", type: :system do
   end
 
   context "as a learner with an enrolled course" do
-    it "can navigate to the lesson viewer" do
+    it "can navigate to the lesson viewer and start a course" do
       visit dashboard_path
       click_link course.title
       expect(page).to have_current_path(course_path(course))
 
       click_link "Start Course"
+
+      expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
+    end
+
+    it "resumes progress after completed lessons" do
+      LessonCompletion.create(user: learner, lesson: lesson1)
+      LessonCompletion.create(user: learner, lesson: lesson2)
+
+      visit dashboard_path
+      click_link course.title
+      expect(page).to have_current_path(course_path(course))
+
+      click_link "Open Course"
+
+      expect(page).to have_current_path(course_lesson_show_path(course, lesson3))
+    end
+
+    it "opens the first lesson after completing all lessons" do
+      LessonCompletion.create(user: learner, lesson: lesson1)
+      LessonCompletion.create(user: learner, lesson: lesson2)
+      LessonCompletion.create(user: learner, lesson: lesson3)
+
+      visit dashboard_path
+      click_link course.title
+      expect(page).to have_current_path(course_path(course))
+
+      click_link "Open Course"
 
       expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
     end

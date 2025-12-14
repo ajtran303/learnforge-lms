@@ -1,11 +1,10 @@
 <div id="lesson_<%= lesson.id %>" class="lesson">
   <h3><%= lesson.title %></h3>
 
-  <%# <div class="lesson-content"> %>
-    <%# <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
-  <%# </div> %>
-  
   <% if current_user.instructor? %>
+    <div class="lesson-content">
+      <%= lesson.content %>
+    </div>
     <%= link_to "Edit", edit_course_lesson_path(@course, lesson), data: { turbo_frame: "lesson_form" } %>
     <%= button_to "Delete", course_lesson_path(@course, lesson), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this lesson?" } %>
   <% end %>

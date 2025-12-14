@@ -25,7 +25,8 @@
 
     <%= render "shared/course_progress", course: @course, user: current_user %>
 
-    <%= link_to "Start Course", course_lesson_show_path(@course, @course.lessons.first) %>
+    <% lesson = next_uncompleted_lesson(@course, current_user) || @course.lessons.order(:id).first %>
+    <%= link_to course_entry_label(@course, current_user), course_lesson_show_path(@course, lesson) %>
   <% else %>
     <%= button_to "Enroll in this Course", enroll_course_path(@course), method: :post %>
   <% end %>
