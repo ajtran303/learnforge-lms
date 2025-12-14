@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class ="h-full bg-gray-900">
   <head>
     <title><%= content_for(:title) || "LearnForge LMS" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,9 +23,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class=h-full>
     <% if current_user%>
-      <%= link_to "Dashboard", dashboard_path %>
+      <%= link_to "Home", dashboard_path %>
     <% end %>
 
     <% if session[:user_id] %>

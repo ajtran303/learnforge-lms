@@ -1,28 +1,30 @@
-<h1>Sign In</h1>
+<h1 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">LearnForge LMS</h1>
 
-<%= form_with url: session_path, local: true do |f| %>
-  <fieldset>
-    <legend>Log into your account</legend>
+<div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+  <%= form_with url: session_path, local: true do |f| %>
+    <fieldset>
+      <legend class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white">Log into your account</legend>
 
-    <div>
-      <label for="user_email">Email</label>
-      <%= f.email_field :email, id: :user_email, required: true %>
-    </div>
+      <div>
+        <label for="user_email" class="block text-sm/6 font-medium text-gray-100">Email</label>
+        <%= f.email_field :email, id: :user_email, required: true, class: "block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" %>
+      </div>
 
-    <div>
-      <label for="user_password">Password</label>
-      <%= f.password_field :password, id: :user_password, required: true %>
-    </div>
+      <div>
+        <label for="user_password", class="block text-sm/6 font-medium text-gray-100">Password</label>
+        <%= f.password_field :password, id: :user_password, required: true, class: "block w-full rounded-md bg-white/5 px-3 py-1.5 text-base text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" %>
+      </div>
 
-    <div>
-      <%= f.submit "Sign In", data: { disable_with: nil } %>
-    </div>
-  </fieldset>
-<% end %>
-
-<div>
-  Not registered? <%= link_to "Sign up!", new_user_registration_path %>
+      <div>
+        <%= f.submit "Sign In", data: { disable_with: nil }, class: "flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+      </div>
+    </fieldset>
+  <% end %>
 </div>
+
+<p class="mt-10 text-center text-sm/6 text-gray-400">
+  Not registered? <%= link_to "Sign up!", new_user_registration_path, class: "font-semibold text-indigo-400 hover:text-indigo-300" %>
+</p>
 
 <% if flash[:alert] %>
   <p class="alert"><%= flash[:alert] %></p>
