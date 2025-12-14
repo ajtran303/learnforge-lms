@@ -59,16 +59,6 @@ class LessonsController < ApplicationController
     end
   end
 
-  def complete
-    @lesson = @course.lessons.find(params[:id])
-    current_user.complete_lesson(@lesson)
-
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to course_lesson_show_path(@course, @lesson) }
-    end
-  end
-
   private
 
   def require_login
