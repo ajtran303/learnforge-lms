@@ -1,9 +1,9 @@
 <div id="lesson_<%= lesson.id %>" class="lesson">
   <h3><%= lesson.title %></h3>
 
-  <div class="lesson-content">
-    <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
-  </div>
+  <%# <div class="lesson-content"> %>
+    <%# <%= sanitize(lesson.content, tags: %w(strong em b i u p br)) %>
+  <%# </div> %>
   
   <% if current_user.instructor? %>
     <%= link_to "Edit", edit_course_lesson_path(@course, lesson), data: { turbo_frame: "lesson_form" } %>

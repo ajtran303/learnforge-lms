@@ -20,6 +20,10 @@
   </fieldset>
 <% end %>
 
+<div>
+  Not registered? <%= link_to "Sign up!", new_user_registration_path %>
+</div>
+
 <% if flash[:alert] %>
   <p class="alert"><%= flash[:alert] %></p>
 <% end %>

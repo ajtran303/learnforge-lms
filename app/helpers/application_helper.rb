@@ -3,7 +3,10 @@ module ApplicationHelper
     total = course.lessons.count
     return 0 if total.zero?
 
-    completed = (user.completed_lessons & course.lessons).count
+    completed = user.completed_lessons
+                    .where(course_id: course.id)
+                    .count
+
     ((completed.to_f / total) * 100).round
   end
 end

@@ -23,9 +23,7 @@
   <% if current_user.enrolled_courses.include?(@course) %>
     <p>You are already enrolled in this course.</p>
 
-    <div id="course_<%= @course.id %>_progress">
-      <%= course_progress_percentage(@course, current_user) %>% Complete
-    </div>
+    <%= render "shared/course_progress", course: @course, user: current_user %>
 
     <%= link_to "Start Course", course_lesson_show_path(@course, @course.lessons.first) %>
   <% else %>
@@ -34,6 +32,10 @@
 <% end %>
 
 <h2>Lessons</h2>
+
+<div id="flash">
+  <%= render "shared/flash" %>
+</div>
 
 <% if flash[:lesson_deleted] %>
   <p class="flash lesson-deleted"><%= flash[:lesson_deleted] %></p>

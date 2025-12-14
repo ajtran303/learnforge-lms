@@ -31,9 +31,7 @@
         <strong><%= link_to course.title, course_path(course) %></strong><br>
         <em><%= course.description %></em><br>
         <p><strong>Instructor:</strong> <%= course.user.email %></p>
-        <div id="course_<%= course.id %>_progress">
-          <%= course_progress_percentage(course, current_user) %>% Complete
-        </div>
+        <%= render "shared/course_progress", course: course, user: current_user %>
       </li>
     <% end %>
   </ul>

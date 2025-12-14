@@ -32,9 +32,6 @@
       <%= button_to "Log out", logout_path, method: :delete %>
     <% end %>
 
-    <div id="flash">
-      <%= render "shared/flash" %>
-    </div>
     <%= yield %>
   </body>
 </html>
