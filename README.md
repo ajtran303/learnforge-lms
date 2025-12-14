@@ -2,6 +2,8 @@
 
 A lightweight Learning Management System built as a full-stack Rails MVP. Track dev progress on the [issues page](https://github.com/ajtran303/learnforge-lms/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acreated-asc).
 
+Visit the app in production at: [https://learnforge-lms.onrender.com](https://learnforge-lms.onrender.com)
+
 ## 🚀 Overview
 
 LearnForge is a minimal, production-ready Learning Management System built with Ruby on Rails 8. It features course creation, lesson management, enrollment, and progress tracking.
