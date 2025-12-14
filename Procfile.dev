@@ -1,0 +1,3 @@
+bundle exec rake assets:precompile
+web: bin/rails server
+css: bin/rails tailwindcss:watch
