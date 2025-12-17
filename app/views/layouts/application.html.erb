@@ -30,7 +30,13 @@
         <% if current_user%>
             <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary p-2 m-2" %>
         <% end %>
+        <% unless current_user%>
+          <div></div>
+        <% end%>
         <h1 class="text-center">LearnForge LMS</h1>
+        <% unless current_user%>
+          <div></div>
+        <% end%>
         <% if session[:user_id] %>
             <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-secondary p-2 m-2" %>
         <% end %>
