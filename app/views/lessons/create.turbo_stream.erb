@@ -1,11 +1,9 @@
 <%= turbo_stream.replace "flash" do %>
-  <div id="flash">
-    <%= flash[:notice] %>
-  </div>
+  <%= render "shared/flash" %>
 <% end %>
 
-<%= turbo_stream.append "lessons" do %>
-  <%= render @lesson %>
+<%= turbo_stream.update "lessons" do %>
+  <%= render "lessons/lessons" %>
 <% end %>
 
 <%= turbo_stream.replace "lesson_form" do %>

@@ -7,11 +7,11 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.new(lesson_params)
 
     if @lesson.save
-      flash[:notice] = "Lesson created successfully"
+      flash.now[:notice] = "Lesson created successfully"
 
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to course_path(@course), notice: "Lesson created successfully" }
+        format.html { redirect_to course_path(@course) }
       end
     else
       @course = @lesson.course
@@ -36,7 +36,7 @@ class LessonsController < ApplicationController
 
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to course_path(@course), notice: "Lesson updated successfully" }
+        format.html { redirect_to course_path(@course) }
       end
     else
       render :edit, status: :unprocessable_entity
@@ -47,14 +47,17 @@ class LessonsController < ApplicationController
     @lesson = @course.lessons.find(params[:id])
     @lesson.destroy
 
+    flash.now[:notice] = "Lesson deleted successfully" # for Turbo
+
     respond_to do |format|
       format.html do
-        flash[:lesson_deleted] = "Lesson deleted successfully"
         redirect_to course_path(@course)
       end
       format.turbo_stream do
-        flash.now[:lesson_deleted] = "Lesson deleted successfully" # for Turbo
-        render turbo_stream: turbo_stream.remove(@lesson)
+        render turbo_stream: [
+          turbo_stream.replace("flash", partial: "shared/flash"),
+          turbo_stream.remove(@lesson)
+        ]
       end
     end
   end

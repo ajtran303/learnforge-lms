@@ -1,25 +1,32 @@
-<h1><%= @course.title %></h1>
-<p><%= @course.description %></p>
-<p><strong>Instructor:</strong> <%= @course.user.email %></p>
+<div class="container w-75 mx-auto">
 
-<div id="flash">
-  <%= notice %>
-</div>
+<h1 class="text-center"><%= @course.title %></h1>
+<p class="text-center"><%= @course.description %></p>
 
 <% if current_user&.instructor? %>
-  <p>Status: <%= @course.status %></p>
-  <% if @course.draft? %>
-    <%= button_to "Publish", publish_course_path(@course), method: :patch %>
-  <% else %>
-    <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch %>
-  <% end %>
+  <div class="d-flex justify-content-center">
+    <p class="me-4 mt-3 mb-3">Status: <%= @course.status.capitalize %></p>
+    <% if @course.draft? %>
+      <%= button_to "Publish", publish_course_path(@course), method: :patch, class: "btn btn-primary h-100 ms-4" %>
+    <% else %>
+      <%= button_to "Unpublish", unpublish_course_path(@course), method: :patch, class: "btn btn-secondary h-100 ms-4" %>
+    <% end %>
+  </div>
+  <br>
 
   <turbo-frame id="lesson_form">
     <%= render "lessons/form", lesson: Lesson.new(course: @course) %>
   </turbo-frame>
+
+
+  <div id="flash">
+    <%= render "shared/flash" %>
+  </div>
 <% end %>
 
 <% if current_user.role == "learner" %>
+  <p><strong>Instructor:</strong> <%= @course.user.email %></p>
+
   <% if current_user.enrolled_courses.include?(@course) %>
     <p>You are already enrolled in this course.</p>
 
@@ -32,16 +39,10 @@
   <% end %>
 <% end %>
 
-<h2>Lessons</h2>
-
-<div id="flash">
-  <%= render "shared/flash" %>
-</div>
-
-<% if flash[:lesson_deleted] %>
-  <p class="flash lesson-deleted"><%= flash[:lesson_deleted] %></p>
-<% end %>
+<h2 class="text-center">Lessons</h2>
 
 <turbo-frame id="lessons">
   <%= render "lessons/lessons", lessons: @course.lessons %>
 </turbo-frame>
+
+</div>

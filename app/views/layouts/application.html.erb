@@ -28,7 +28,7 @@
   <body class="container p-4">
     <nav class="container d-flex justify-content-between w-75">
         <% if current_user%>
-            <%= link_to "Dashboard", dashboard_path, class: "btn btn-primary p-2 m-2" %>
+            <%= button_to "Dashboard", dashboard_path, method: :get, class: "btn btn-primary p-2 m-2" %>
         <% end %>
         <% unless current_user%>
           <div></div>

@@ -1,5 +1,6 @@
 <%= form_with model: lesson, url: lesson.persisted? ? course_lesson_path(lesson.course, lesson) : course_lessons_path(lesson.course), data: { turbo_frame: "lesson_form" } do |f| %>
-  <h2><%= lesson.persisted? ? "Edit Lesson" : "Add Lesson" %></h2>
+  <fieldset>
+  <legend><%= lesson.persisted? ? "Edit Lesson" : "Add Lesson" %></legend>
   <% if lesson.errors.any? %>
     <div class="errors">
       <ul>
@@ -21,4 +22,6 @@
   </div>
 
   <%= f.submit lesson.persisted? ? "Update Lesson" : "Create Lesson" %>
+  </fieldset>
 <% end %>
+<br>

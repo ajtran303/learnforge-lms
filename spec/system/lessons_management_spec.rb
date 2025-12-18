@@ -103,7 +103,7 @@ RSpec.describe "Lessons Management", type: :system do
       end
 
       expect(page).to have_current_path(course_path(course))
-      # expect(page).to have_content("Lesson deleted successfully")
+      expect(page).to have_content("Lesson deleted successfully")
       expect(page).not_to have_content(lesson1.title)
     end
   end
