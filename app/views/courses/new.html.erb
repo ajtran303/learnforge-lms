@@ -1,32 +1,4 @@
-<h1>Create a new course</h1>
-
-<%= form_with model: @course, local: true do |f| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
-      <ul>
-        <% @course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <fieldset>
-    <legend>Course Details</legend>
-
-    <div>
-      <%= f.label :title, "Course Title" %>
-      <%= f.text_field :title, required: true %>
-    </div>
-
-    <div>
-      <%= f.label :description, "Course Description" %>
-      <%= f.text_area :description, required: true %>
-    </div>
-
-    <div>
-      <%= f.submit "Create Course" %>
-    </div>
-  </fieldset>
-<% end %>
+<div class="w-75 mx-auto">
+  <h1 class="text-center">Create Course</h1>
+  <%= render "courses/form", course: @course %>
+</div>

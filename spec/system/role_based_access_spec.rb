@@ -22,7 +22,7 @@ RSpec.describe "Role-Based Access Control", type: :system do
     it "can access the new course page" do
       visit new_course_path
       expect(page).to have_current_path(new_course_path)
-      expect(page).to have_content("Create a new course")
+      expect(page).to have_content("Create Course")
     end
 
     it "cannot access the admin page" do

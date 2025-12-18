@@ -9,8 +9,12 @@
 
 <% if current_user.role == "instructor" %>
   <h1 class="text-center w-75 mx-auto">Instructor Dashboard</h1>
+  <br>
   <div class="container">
-  
+    <div class="text-center w-75 mx-auto">
+      <%= link_to "Create Course", new_course_path, class: "btn btn-primary w-100" %>
+    </div>
+    <br>
     <% if current_user.courses.any? { |course| course.published?}  %>
       <h2 class="text-center w-75 mx-auto">Published Courses</h2>
     <% end %>
@@ -60,17 +64,13 @@
         <% end %>
       <% end %>
     </ul>
-
-    <div class="text-center">
-      <%= link_to "Create Course", new_course_path, class: "btn btn-primary w-75" %>
-    </div>
   </div>
 
 
 <% elsif current_user.role == "learner" %>
   <h1 class="text-center w-75 mx-auto">Learner Dashboard</h1>
   <h2 class="text-center w-75 mx-auto">Available Courses</h2>
-  <ul class="w-75 mx-auto list-group list-group">
+  <ul class="w-75 mx-auto list-group">
     <% @courses.each do |course| %>
       <li class="p-2 list-group-item">
         <strong><%= link_to course.title, course_path(course) %></strong><br>
