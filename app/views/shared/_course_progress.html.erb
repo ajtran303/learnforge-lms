@@ -1,3 +1,35 @@
 <turbo-frame id="course_<%= course.id %>_progress" class="my-auto h-100">
-  <%= course_progress_percentage(course, user) %>% Complete
+  <% progress = course_progress_percentage(course, user) %>
+
+  <div class="d-flex align-items-center justify-content-between">
+
+    <% if progress == 100 %>
+      <span class="badge bg-primary">Completed ✓</span>
+    <% else %>
+      <strong><%= progress %>% Complete</strong>
+    <% end %>
+  </div>
+
+  <div class="progress mt-2" style="height: 20px;">
+    <% bar_class =
+        if progress == 100
+          "bg-primary"
+        elsif progress >= 50
+          "bg-success"
+        else
+          "bg-warning"
+        end
+    %>
+
+    <div
+      class="progress-bar <%= bar_class %> <%= 'progress-bar-striped progress-bar-animated' unless progress == 100 %>"
+      role="progressbar"
+      style="width: <%= progress %>%"
+      aria-valuenow="<%= progress %>"
+      aria-valuemin="0"
+      aria-valuemax="100"
+    >
+      <%= progress %>%
+    </div>
+  </div>
 </turbo-frame>

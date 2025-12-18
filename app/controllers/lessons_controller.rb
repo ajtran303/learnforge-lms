@@ -14,8 +14,10 @@ class LessonsController < ApplicationController
         format.html { redirect_to course_path(@course) }
       end
     else
-      @course = @lesson.course
-      render "courses/show", status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream { render :create, status: :unprocessable_entity }
+        format.html { render "courses/show", status: :unprocessable_entity }
+      end
     end
   end
 

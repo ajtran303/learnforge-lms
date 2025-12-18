@@ -9,7 +9,7 @@
 
       <% if current_user.instructor? %>
         <div class="lesson-content">
-          <%= lesson.content %>
+          <%= simple_format lesson.content %>
         </div>
         <br>
         <div class="row">

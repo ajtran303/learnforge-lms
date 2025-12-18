@@ -11,15 +11,9 @@
   <nav>
     <ul class="list-group">
       <% @course.lessons.order(:id).each do |lesson| %>
-        <% if lesson == @lesson %>
-          <li class="list-group-item active">
-            <%= link_to lesson.title, course_lesson_show_path(@course, lesson), class: "text-light" %>
-          </li>
-        <% else %>
-          <li class="list-group-item">
-            <%= link_to lesson.title, course_lesson_show_path(@course, lesson) %>
-          </li>
-        <% end %>
+      <li class="list-group-item">
+        <%= link_to lesson.title, course_lesson_show_path(@course, lesson), class: ("active" if lesson == @lesson) %>
+      </li>
       <% end %>
     </ul>
   </nav>
@@ -31,7 +25,7 @@
   </turbo-frame>
 
   <article>
-    <p class="p-4"><%= @lesson.content %></p>
+    <p class="p-4"><%= simple_format @lesson.content %></p>
   </article>
 
   <nav class="lesson-nav p-4" aria-label="Lesson navigation">

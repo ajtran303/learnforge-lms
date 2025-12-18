@@ -1,37 +1,39 @@
-<h1>Sign Up</h1>
+<div class="container w-75">
+  <h1 class="text-center mb-4">Sign Up</h1>
 
-<% if @user.errors.any? %>
-  <section aria-labelledby="form-errors">
-    <h2 id="form-errors"><%= pluralize(@user.errors.count, "error") %> prevented this account from being created:</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </section>
-<% end %>
-
-<%= form_with model: @user, url: users_path, local: true do |f| %>
-  <fieldset>
-    <legend>Create your account</legend>
-
-    <div>
-      <label for="user_email">Email</label>
-      <%= f.email_field :email, id: "user_email", required: true, autofocus: true %>
+  <%# Server-side errors %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-danger">
+      <ul class="mb-0">
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div>
-      <label for="user_password">Password</label>
-      <%= f.password_field :password, id: "user_password", required: true %>
-    </div>
+  <%= form_with model: @user, local: true do |f| %>
+    <fieldset class="border p-4 rounded">
+      <legend class="w-auto px-2">Create your account</legend>
 
-    <div>
-      <label for="user_password_confirmation">Password confirmation</label>
-      <%= f.password_field :password_confirmation, id: "user_password_confirmation", required: true %>
-    </div>
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email, class: "form-control", value: @user.email, placeholder: "Enter your email", autofocus: true %>
+      </div>
 
-    <div>
-      <%= f.submit "Sign Up", data: { disable_with: nil } %>
-    </div>
-  </fieldset>
-<% end %>
+      <div class="mb-3">
+        <%= f.label :password, class: "form-label" %>
+        <%= f.password_field :password, class: "form-control", placeholder: "Enter a password (min 6 chars)" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, class: "form-label" %>
+        <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+      </div>
+
+      <div>
+        <%= f.submit "Sign Up", class: "btn btn-primary w-100" %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>
