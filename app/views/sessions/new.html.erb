@@ -3,19 +3,20 @@
 <h1 class="p-2 text-center">Sign In</h1>
 
 <%= form_with url: session_path, local: true do |f| %>
-  <fieldset>
+  <fieldset class="border p-4 rounded">
+
     <legend class="p-2 text-center">Log into your account</legend>
 
     <div class="container w-50 mx-auto">
 
       <div class="p-2 d-flex flex-column">
-        <label for="user_email" class="pb-1">Email</label>
-        <%= f.email_field :email, id: :user_email, required: true, class: "mr-6" %>
+        <label for="user_email" class="pb-1 form-label">Email</label>
+        <%= f.email_field :email, id: :user_email, required: true, class: "form-control" %>
       </div>
 
       <div class="p-2 d-flex flex-column">
-        <label for="user_password" class="pb-1">Password</label>
-        <%= f.password_field :password, id: :user_password, required: true %>
+        <label for="user_password" class="pb-1 form-label">Password</label>
+        <%= f.password_field :password, id: :user_password, required: true, class: "form-control" %>
       </div>
 
       <div>
