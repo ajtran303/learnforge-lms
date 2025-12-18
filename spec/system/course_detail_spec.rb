@@ -12,7 +12,7 @@ RSpec.describe "Course Detail Page", type: :system do
   end
 
   describe "Learner viewing a course" do
-    it "displays course info, lessons, and enroll button if not enrolled" do
+    it "displays course info and enroll button if not enrolled" do
       login_as(learner)
       visit course_path(course)
 
@@ -20,10 +20,10 @@ RSpec.describe "Course Detail Page", type: :system do
       expect(page).to have_content(course.description)
       expect(page).to have_content("Instructor: #{course.user.email}")
 
-      expect(page).to have_content(lesson1.title)
-      expect(page).to have_content(lesson2.title)
+      expect(page).not_to have_content(lesson1.title)
+      expect(page).not_to have_content(lesson2.title)
 
-      expect(page).to have_button("Enroll in this Course")
+      expect(page).to have_button("Enroll In This Course To View Lessons")
     end
 
     it "does not show enroll button if the learner is already enrolled" do
@@ -31,8 +31,11 @@ RSpec.describe "Course Detail Page", type: :system do
       login_as(learner)
       visit course_path(course)
 
-      expect(page).not_to have_button("Enroll in this Course")
+      expect(page).not_to have_button("Enroll In This Course To View Lessons")
       expect(page).to have_content("You are already enrolled in this course.")
+
+      expect(page).to have_content(lesson1.title)
+      expect(page).to have_content(lesson2.title)
     end
   end
 end

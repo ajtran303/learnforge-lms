@@ -9,7 +9,7 @@ class LessonCompletionsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to course_lesson_show_path(@course, @lesson), notice: "Completed" }
+      format.html { redirect_to course_lesson_show_path(@course, @lesson) }
     end
   end
 

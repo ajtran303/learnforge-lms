@@ -5,3 +5,7 @@
 <%= turbo_stream.replace "course_#{@course.id}_progress" do %>
   <%= render "shared/course_progress", course: @course, user: current_user %>
 <% end %>
+
+<%= turbo_stream.replace "lesson_title" do %>
+  <h2 id="lesson-title" class="text-center"><%= "#{@lesson.title} - Completed" %></h2>
+<% end %>

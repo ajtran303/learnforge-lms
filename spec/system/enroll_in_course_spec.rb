@@ -16,9 +16,9 @@ RSpec.describe "Enroll in Course", type: :system do
     it "enrolls the learner and redirects to the first lesson" do
       visit course_path(course)
 
-      expect(page).to have_button("Enroll in this Course")
+      expect(page).to have_button("Enroll In This Course To View Lessons")
 
-      click_button "Enroll in this Course"
+      click_button "Enroll In This Course To View Lessons"
 
       expect(learner.enrolled_courses).to include(course)
 

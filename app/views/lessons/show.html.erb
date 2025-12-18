@@ -26,7 +26,10 @@
 </aside>
 
 <main class="lesson-content flex-fill ms-10 p-4" aria-labelledby="lesson-title">
-  <h2 id="lesson-title" class="text-center"><%= current_user.completed_lessons.include?(@lesson) ? "#{@lesson.title} - Completed" : @lesson.title %></h2>
+  <turbo-frame id="lesson_title">
+    <h2 id="lesson-title" class="text-center"><%= current_user.completed_lessons.include?(@lesson) ? "#{@lesson.title} - Completed" : @lesson.title %></h2>
+  </turbo-frame>
+
   <article>
     <p class="p-4"><%= @lesson.content %></p>
   </article>
