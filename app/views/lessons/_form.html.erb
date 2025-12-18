@@ -4,11 +4,9 @@
   <legend><%= lesson.persisted? ? "Edit Lesson" : "Add Lesson" %></legend>
   <% if lesson.errors.any? %>
     <div class="errors">
-      <ul>
         <% lesson.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <div class="alert alert-warning"><%= msg %></div>
         <% end %>
-      </ul>
     </div>
   <% end %>
 

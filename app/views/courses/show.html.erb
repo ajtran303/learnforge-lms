@@ -19,7 +19,7 @@
   <br>
 
   <turbo-frame id="lesson_form">
-    <%= render "lessons/form", lesson: Lesson.new(course: @course) %>
+    <%= render "lessons/form", lesson: Lesson.new(course: @course) || Lesson.new(course: @course) %>
   </turbo-frame>
 
 
