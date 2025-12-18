@@ -1,12 +1,9 @@
 <%= form_with model: course, local: true do |f| %>
   <% if course.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
-      <ul>
-        <% course.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <% course.errors.full_messages.each do |message| %>
+        <div class="alert alert-warning"><%= message %></div>
+      <% end %>
     </div>
   <% end %>
 
@@ -15,12 +12,12 @@
 
     <div>
       <%= f.label :title, "Course Title", class: "form-label" %>
-      <%= f.text_field :title, required: true, class: "form-control" %>
+      <%= f.text_field :title, class: "form-control" %>
     </div>
 
     <div>
       <%= f.label :description, "Course Description", class: "form-label" %>
-      <%= f.text_area :description, required: true, class: "form-control" %>
+      <%= f.text_area :description, class: "form-control" %>
     </div>
 
     <div>
