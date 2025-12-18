@@ -8,7 +8,7 @@
 <% end %>
 
 <% if current_user.role == "instructor" %>
-  <h1 class="text-center w-75 mx-auto">Instructor Dashboard</h1>
+  <h1 class="text-center w-75 mx-auto p-4">Instructor Dashboard</h1>
   <br>
   <div class="container">
     <div class="text-center w-75 mx-auto">
@@ -68,15 +68,21 @@
 
 
 <% elsif current_user.role == "learner" %>
-  <h1 class="text-center w-75 mx-auto">Learner Dashboard</h1>
+  <h1 class="text-center w-75 mx-auto p-4">Learner Dashboard</h1>
   <h2 class="text-center w-75 mx-auto">Available Courses</h2>
   <ul class="w-75 mx-auto list-group">
     <% @courses.each do |course| %>
       <li class="p-2 list-group-item">
-        <strong><%= link_to course.title, course_path(course) %></strong><br>
+        <div class="d-flex justify-content-between">
+          <strong><%= link_to course.title, course_path(course) %></strong><br>
+          <% if current_user.enrolled_courses.include?(course)%>
+            <%= render "shared/course_progress", course: course, user: current_user %>
+          <% else %>
+            <em>Not enrolled</em>
+          <% end %>
+        </div>
         <em><%= course.description %></em><br>
         <p><strong>Instructor:</strong> <%= course.user.email %></p>
-        <%= render "shared/course_progress", course: course, user: current_user %>
       </li>
     <% end %>
   </ul>

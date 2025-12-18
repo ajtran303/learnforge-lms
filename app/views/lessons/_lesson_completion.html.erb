@@ -1,8 +1,7 @@
-<% if current_user.completed_lessons.include?(lesson) %>
-  <p class="completed">Completed</p>
-<% else %>
+<% unless current_user.completed_lessons.include?(lesson) %>
   <%= button_to "Mark Complete",
         complete_course_lesson_path(lesson.course, lesson),
         method: :post,
-        form: { data: { turbo_frame: "lesson_completion" } } %>
+        form: { data: { turbo_frame: "lesson_completion" } },
+        class: "btn btn-primary w-100" %>
 <% end %>

@@ -26,17 +26,11 @@
   </head>
 
   <body class="container p-4">
-    <nav class="container d-flex justify-content-between w-75">
+    <nav class="container d-flex justify-content-between w-75 p-4">
         <% if current_user%>
             <%= button_to "Dashboard", dashboard_path, method: :get, class: "btn btn-primary p-2 m-2" %>
         <% end %>
-        <% unless current_user%>
-          <div></div>
-        <% end%>
-        <h1 class="text-center">LearnForge LMS</h1>
-        <% unless current_user%>
-          <div></div>
-        <% end%>
+        <h1 class="mx-auto">LearnForge LMS</h1>
         <% if session[:user_id] %>
             <%= button_to "Log out", logout_path, method: :delete, class: "btn btn-secondary p-2 m-2" %>
         <% end %>
