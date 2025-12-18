@@ -15,7 +15,7 @@ This project is built to demonstrate clean Rails architecture, role-based access
 
 - Email/password authentication
 
-- Roles: Learner, Instructor, Admin
+- Roles: Learner, Instructor
 
 📚 Course Management (Instructor)
 
@@ -39,14 +39,6 @@ This project is built to demonstrate clean Rails architecture, role-based access
 
 - Progress bar + last lesson tracking
 
-🛠️ Admin Tools
-
-- View all courses
-
-- Unpublish inappropriate content
-
-- View/disable users
-
 ## ⚙️ Tech Stack
 
 - Ruby on Rails 8
@@ -55,9 +47,9 @@ This project is built to demonstrate clean Rails architecture, role-based access
 
 - PostgreSQL
 
-- Hotwire (Turbo + Stimulus)
+- Hotwire (Turbo)
 
-- Tailwind CSS
+- Bootstrap
 
 - Render or Fly.io deployment (TBD)
 
@@ -68,7 +60,7 @@ Backend
 
 - RESTful Rails controllers
 
-- Service Objects for logic (enrollments, progress updates)
+- Model validations
 
 - PostgreSQL schemas with foreign keys + constraints
 
@@ -76,9 +68,7 @@ Frontend
 
 - Turbo for navigation and partial updates
 
-- Stimulus for interactivity (progress tracking, lesson UI)
-
-- Tailwind CSS for styling
+- Bootstrap for styling
 
 ## 🤝 Contributing
 
