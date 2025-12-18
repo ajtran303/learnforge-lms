@@ -1,3 +1,27 @@
-<% @course.lessons.each do |lesson| %>
-  <%= render lesson %>
-<% end %>
+<ul class="list-group">
+  <% @course.lessons.order(:id).each do |lesson| %>
+    <li id="lesson_<%= lesson.id %>" class="lesson list-group-item">
+      <% if current_user.learner? && current_user.completed_lessons.include?(lesson)%>
+        <h3><%= "#{lesson.title} - Completed" %></h3>
+      <% else %>
+        <h3><%= lesson.title %></h3>
+      <% end %>
+
+      <% if current_user.instructor? %>
+        <div class="lesson-content">
+          <%= lesson.content %>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-6">
+            <%= link_to "Edit", edit_course_lesson_path(@course, lesson), data: { turbo_frame: "lesson_form" }, class: "btn btn-primary w-100" %>
+          </div>
+          <div class="col-6">
+            <%= button_to "Delete", course_lesson_path(@course, lesson), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this lesson?" }, class: "btn btn-secondary w-100" %>
+          </div>
+        </div>
+      <% end %>
+    </li>
+
+  <% end %>
+</ul>

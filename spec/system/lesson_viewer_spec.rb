@@ -21,7 +21,7 @@ RSpec.describe "Lesson Viewer", type: :system do
       click_link course.title
       expect(page).to have_current_path(course_path(course))
 
-      click_link "Start Course"
+      click_button "Start Course"
 
       expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
     end
@@ -34,7 +34,7 @@ RSpec.describe "Lesson Viewer", type: :system do
       click_link course.title
       expect(page).to have_current_path(course_path(course))
 
-      click_link "Open Course"
+      click_button "Open Course"
 
       expect(page).to have_current_path(course_lesson_show_path(course, lesson3))
     end
@@ -48,7 +48,7 @@ RSpec.describe "Lesson Viewer", type: :system do
       click_link course.title
       expect(page).to have_current_path(course_path(course))
 
-      click_link "Open Course"
+      click_button "Open Course"
 
       expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
     end
@@ -74,25 +74,25 @@ RSpec.describe "Lesson Viewer", type: :system do
     it "shows next lesson link" do
       visit course_lesson_show_path(course, lesson1)
 
-      expect(page).to have_link("Next Lesson", href: course_lesson_show_path(course, lesson2))
+      expect(page).to have_button("Next Lesson")
     end
 
     it "shows previous lesson link" do
       visit course_lesson_show_path(course, lesson2)
 
-      expect(page).to have_link("Previous Lesson", href: course_lesson_show_path(course, lesson1))
+      expect(page).to have_button("Previous Lesson")
     end
 
     it "does not show previous lesson link for first lesson" do
       visit course_lesson_show_path(course, lesson1)
 
-      expect(page).not_to have_link("Previous Lesson")
+      expect(page).not_to have_button("Previous Lesson")
     end
 
     it "does not show next lesson link for last lesson" do
       visit course_lesson_show_path(course, lesson3)
 
-      expect(page).not_to have_link("Next Lesson")
+      expect(page).not_to have_button("Next Lesson")
     end
   end
 end

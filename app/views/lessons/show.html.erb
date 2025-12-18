@@ -1,43 +1,58 @@
-<header class="course-header">
-  <h1 class="course-title"><%= @course.title %></h1>
+<div class="w-75 mx-auto">
+
+<header class="course-header d-flex justify-content-around p-4">
+  <h1 class="course-title my-auto"><%= @course.title %></h1>
+  <%= render "shared/course_progress", course: @course, user: current_user %>
+  <%= button_to "Back to Course Overview", course_path(@course), method: :get, class: "btn btn-primary h-100" %>
 </header>
 
-<%= render "shared/course_progress", course: @course, user: current_user %>
-
+<div class="d-flex">
 <aside class="lessons-sidebar" aria-label="Lesson navigation">
   <nav>
-    <ul>
-      <% @course.lessons.each do |lesson| %>
-        <li class="<%= "active" if lesson == @lesson %>">
-          <%= link_to lesson.title, course_lesson_show_path(@course, lesson) %>
-        </li>
+    <ul class="list-group">
+      <% @course.lessons.order(:id).each do |lesson| %>
+        <% if lesson == @lesson %>
+          <li class="list-group-item active">
+            <%= link_to lesson.title, course_lesson_show_path(@course, lesson), class: "text-light" %>
+          </li>
+        <% else %>
+          <li class="list-group-item">
+            <%= link_to lesson.title, course_lesson_show_path(@course, lesson) %>
+          </li>
+        <% end %>
       <% end %>
     </ul>
   </nav>
 </aside>
 
-<main class="lesson-content" aria-labelledby="lesson-title">
-  <h2 id="lesson-title"><%= @lesson.title %></h2>
+<main class="lesson-content flex-fill ms-10 p-4" aria-labelledby="lesson-title">
+  <turbo-frame id="lesson_title">
+    <h2 id="lesson-title" class="text-center"><%= current_user.completed_lessons.include?(@lesson) ? "#{@lesson.title} - Completed" : @lesson.title %></h2>
+  </turbo-frame>
+
   <article>
-    <p><%= @lesson.content %></p>
+    <p class="p-4"><%= @lesson.content %></p>
   </article>
+
+  <nav class="lesson-nav p-4" aria-label="Lesson navigation">
+    <div class="prev-next d-flex justify-content-around">
+      <% lessons = @course.lessons.order(:id).to_a %>
+      <% index = lessons.index(@lesson) %>
+
+      <% if index > 0 %>
+        <%= button_to "Previous Lesson", course_lesson_show_path(@course, lessons[index - 1]), method: :get, class: "previous-lesson btn btn-primary flex-fill" %>
+      <% end %>
+
+      <% if index < lessons.length - 1 %>
+        <%= button_to "Next Lesson", course_lesson_show_path(@course, lessons[index + 1]), method: :get, class: "next-lesson btn btn-primary flex-fill" %>
+      <% end %>
+    </div>
+  </nav>
 
   <turbo-frame id="lesson_completion">
     <%= render "lessons/lesson_completion", lesson: @lesson %>
   </turbo-frame>
 
-  <nav class="lesson-nav" aria-label="Lesson navigation">
-    <div class="prev-next">
-      <% lessons = @course.lessons.to_a %>
-      <% index = lessons.index(@lesson) %>
-
-      <% if index > 0 %>
-        <%= link_to "Previous Lesson", course_lesson_show_path(@course, lessons[index - 1]), class: "previous-lesson" %>
-      <% end %>
-
-      <% if index < lessons.length - 1 %>
-        <%= link_to "Next Lesson", course_lesson_show_path(@course, lessons[index + 1]), class: "next-lesson" %>
-      <% end %>
-    </div>
-  </nav>
 </main>
+</div>
+</div>

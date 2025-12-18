@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Lessons Management", type: :system do
   before do
-    driven_by(:rack_test)
+    driven_by(:selenium_chrome_headless)
   end
 
   let!(:instructor) { FactoryBot.create(:user, role: "instructor") }
