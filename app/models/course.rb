@@ -13,4 +13,5 @@ class Course < ApplicationRecord
   scope :published, -> { where(status: "published") }
 
   def draft? = status == "draft"
+  def published? = status == "published"
 end
