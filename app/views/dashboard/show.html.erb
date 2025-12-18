@@ -20,7 +20,7 @@
     <% end %>
 
     <ul class="w-75 mx-auto list-group">
-      <% current_user.courses.each do |course| %>
+      <% current_user.courses.order(:id).each do |course| %>
         <% if course.status == "published" %>
           <li class="p-2 list-group-item">
             <strong><%= course.title %></strong><br>
@@ -45,7 +45,7 @@
     <% end %>
 
     <ul class="w-75 mx-auto list-group">
-      <% current_user.courses.each do |course| %>
+      <% current_user.courses.order(:id).each do |course| %>
         <% if course.status == "draft" %>
           <li class="p-2 list-group-item">
             <strong><%= course.title %></strong><br>
@@ -71,7 +71,7 @@
   <h1 class="text-center w-75 mx-auto p-4">Learner Dashboard</h1>
   <h2 class="text-center w-75 mx-auto">Available Courses</h2>
   <ul class="w-75 mx-auto list-group">
-    <% @courses.each do |course| %>
+    <% @courses.order(:id).each do |course| %>
       <li class="p-2 list-group-item">
         <div class="d-flex justify-content-between">
           <strong><%= link_to course.title, course_path(course) %></strong><br>
