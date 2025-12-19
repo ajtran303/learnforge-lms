@@ -4,71 +4,99 @@ A lightweight Learning Management System built as a full-stack Rails MVP. Track 
 
 Visit the app in production at: [https://learnforge-lms.onrender.com](https://learnforge-lms.onrender.com)
 
+---
+
 ## 🚀 Overview
 
-LearnForge is a minimal, production-ready Learning Management System built with Ruby on Rails 8. It features course creation, lesson management, enrollment, and progress tracking.
+LearnForge LMS is a minimal, production-ready Learning Management System built with Ruby on Rails 8. It supports instructors and learners with role-based access, lesson progress tracking, and course management.
 
-This project is built to demonstrate clean Rails architecture, role-based access control, modern Hotwire-driven interactivity, and professional full-stack development practices such as Test-Driven Development.
+This project demonstrates clean Rails architecture, modern Hotwire-driven interactivity, role-based access control, and professional full-stack development practices including Test-Driven Development (TDD).
 
-## 🧩 Features (MVP)
-- 👤 Authentication & Roles
+---
 
-- Email/password authentication
+## 🧩 Features
 
-- Roles: Learner, Instructor
+### 👤 Authentication & Roles
+- Email/password authentication using `bcrypt`
+- Roles: **Learner**, **Instructor**, and **Admin**
+- Role-based access control throughout the app
 
-📚 Course Management (Instructor)
+### 📚 Course Management (Instructor)
+- Create, edit, and delete courses
+- Draft/published workflows for courses
+- Add, edit, and delete lessons with text content
+- Instructor dashboard showing draft and published courses
+- Inline lesson editing with Turbo frames
 
-- Create, edit, delete courses
+### 🎓 Learning Experience (Learner)
+- Browse published courses only
+- Enroll in courses with one click
+- View course details and instructor info
+- Mark lessons as completed
+- Visual course progress bar and last-lesson tracking
+- Navigate lessons with previous/next buttons and sidebar
 
-- Add lessons with text content
+### 🔄 Real-time Interactivity
+- Turbo-powered updates for lessons, lesson completion, and course progress
+- Forms update dynamically without full-page reloads
 
-- Draft/published workflows
-
-- Instructor dashboard
-
-🎓 Learning Experience (Learner)
-
-- Browse published courses
-
-- Enroll with one click
-
-- View lessons
-
-- Mark lessons complete
-
-- Progress bar + last lesson tracking
+---
 
 ## ⚙️ Tech Stack
 
-- Ruby on Rails 8
+- **Backend:** Ruby on Rails 8.1
+- **Database:** PostgreSQL
+- **Frontend:** Turbo, Bootstrap 5
+- **Authentication:** `has_secure_password` (bcrypt)
+- **Testing:** RSpec, Capybara, Shoulda Matchers
+- **Deployment:** Render
 
-- RSpec
-
-- PostgreSQL
-
-- Hotwire (Turbo)
-
-- Bootstrap
-
-- Render or Fly.io deployment (TBD)
-
-There are no file uploads or media attachments in this MVP.
+---
 
 ## 🏗️ Architecture
-Backend
 
+**Backend**
 - RESTful Rails controllers
+- Model validations and associations
+- PostgreSQL schemas with foreign keys and constraints
 
-- Model validations
+**Frontend**
+- Turbo for SPA-like navigation and partial updates
+- Bootstrap for responsive styling
+- Turbo frames for inline forms and updates
 
-- PostgreSQL schemas with foreign keys + constraints
+---
 
-Frontend
+## ⚡ Setup
 
-- Turbo for navigation and partial updates
+```bash
+git clone <repo_url>
+cd learnforge-lms
+bundle install
+rails db:create db:migrate db:seed
+rails server
+```
 
-- Bootstrap for styling
+Visit http://localhost:3000
+
+Login with any of the following users:
+
+```
+instructor1@example.com    password
+instructor2@example.com    password
+student@example.com        password
+```
+
+## 🧪 Running Tests
+```bash
+bundle exec rspec
+```
+
+Includes model, system, and integration tests for:
+- Courses, lessons, and enrollment
+- Lesson completion and course progress
+- Role-based access control
+- Authentication and user registration
 
 ## 🤝 Contributing
 
