@@ -39,7 +39,7 @@ gem "thruster", require: false
 group :test do
   gem "capybara"
   gem "launchy"
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
   gem "selenium-webdriver"
 end
 
