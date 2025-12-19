@@ -18,7 +18,7 @@ This project demonstrates clean Rails architecture, modern Hotwire-driven intera
 
 ### 👤 Authentication & Roles
 - Email/password authentication using `bcrypt`
-- Roles: **Learner**, **Instructor**, and **Admin**
+- Roles: **Learner**, **Instructor**
 - Role-based access control throughout the app
 
 ### 📚 Course Management (Instructor)
