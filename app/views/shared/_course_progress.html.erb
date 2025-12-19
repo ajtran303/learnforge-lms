@@ -21,8 +21,10 @@
         end
     %>
 
+    <% text_class = progress < 50 ? "text-dark" : "text-white" %>
+
     <div
-      class="progress-bar <%= bar_class %> <%= 'progress-bar-striped progress-bar-animated' unless progress == 100 %>"
+      class="progress-bar <%= bar_class %> <%= text_class %> <%= 'progress-bar-striped progress-bar-animated' unless progress == 100 %>"
       role="progressbar"
       style="width: <%= progress %>%"
       aria-valuenow="<%= progress %>"
