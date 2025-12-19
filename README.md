@@ -73,12 +73,19 @@ This project demonstrates clean Rails architecture, modern Hotwire-driven intera
 git clone <repo_url>
 cd learnforge-lms
 bundle install
-bin/importmap pin_all
-rails db:create db:migrate db:seed # no seeds yet, this is TBDeveloped
+rails db:create db:migrate db:seed
 rails server
 ```
 
 Visit http://localhost:3000
+
+Login with any of the following users:
+
+```
+instructor1@example.com    password
+instructor2@example.com    password
+student@example.com        password
+```
 
 ## 🧪 Running Tests
 ```bash
