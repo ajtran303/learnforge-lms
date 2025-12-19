@@ -8,6 +8,6 @@
 
 <%= turbo_stream.replace "lesson_form" do %>
   <turbo-frame id="lesson_form">
-    <%= render "lessons/form", lesson: Lesson.new(course: @course) %>
+    <%= render "lessons/form", lesson: @lesson %>
   </turbo-frame>
 <% end %>
