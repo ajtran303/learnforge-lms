@@ -68,8 +68,8 @@
 
 
 <% elsif current_user.role == "learner" %>
-  <h1 class="text-center w-75 mx-auto p-4">Learner Dashboard</h1>
-  <h2 class="text-center w-75 mx-auto">Available Courses</h2>
+  <h1 class="text-center mx-auto p-4">Learner Dashboard</h1>
+  <h2 class="text-center mx-auto">Available Courses</h2>
   <ul class="w-75 mx-auto list-group">
     <% @courses.order(:id).each do |course| %>
       <li class="p-2 list-group-item">
