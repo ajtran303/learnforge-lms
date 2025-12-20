@@ -6,8 +6,8 @@
   <%= button_to "Back to Course Overview", course_path(@course), method: :get, class: "btn btn-primary h-100" %>
 </header>
 
-<div class="d-flex">
-<aside class="lessons-sidebar" aria-label="Lesson navigation">
+<div class="lessons-layout d-flex">
+<aside class="lessons-sidebar " aria-label="Lesson navigation">
   <nav>
     <ul class="list-group">
       <% @course.lessons.order(:id).each do |lesson| %>
