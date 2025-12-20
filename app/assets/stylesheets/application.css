@@ -7,22 +7,14 @@
    Color Palette
    ============================== */
 :root {
-  --primary-color: #1e90ff;
-  /* bright blue for headers & primary buttons */
-  --secondary-color: #6c757d;
-  /* muted gray-blue for secondary buttons */
-  --accent-color: #ffc107;
-  /* yellow accent for hover & highlights */
-  --bg-color: #121212;
-  /* very dark page background */
-  --card-bg: #1f1f1f;
-  /* slightly lighter than bg for cards */
-  --border-color: #333333;
-  /* dark gray borders */
-  --text-color: #f5f5f5;
-  /* light text for readability */
-  --muted-color: #b0b0b0;
-  /* secondary text */
+  --primary-color: #1e90ff;        /* bright blue for headers & primary buttons */
+  --secondary-color: #6c757d;      /* muted gray-blue for secondary buttons */
+  --accent-color: #ffc107;         /* yellow accent for hover & highlights */
+  --bg-color: #121212;             /* very dark page background */
+  --card-bg: #1f1f1f;              /* slightly lighter than bg for cards */
+  --border-color: #333333;         /* dark gray borders */
+  --text-color: #f5f5f5;           /* light text for readability */
+  --muted-color: #b0b0b0;          /* secondary text */
   --alert-success-bg: #2e7d32;
   --alert-success-color: #c8facc;
   --alert-info-bg: #1565c0;
@@ -30,6 +22,7 @@
   --alert-warning-bg: #ff6f00;
   --alert-warning-color: #fff8e1;
 }
+
 body,
 html {
   background-color: var(--bg-color) !important;
@@ -37,6 +30,9 @@ html {
   min-height: 100vh;
 }
 
+/* ==============================
+   Global Container & Cards
+   ============================== */
 .container,
 .w-75,
 .list-group-item,
@@ -46,37 +42,42 @@ fieldset,
   color: var(--text-color) !important;
   border: 1px solid var(--border-color) !important;
   padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Headers */
+/* ==============================
+   Headers
+   ============================== */
 h1,
 h2 {
-  color: #FFD700 !important;
-  /* gold/yellow accent for main headers */
+  color: #FFD700 !important; /* gold/yellow accent */
   font-weight: 600;
 }
 
 h3,
 h4,
 h5 {
-  color: #E0E0E0 !important;
-  /* neutral light gray for sub-headers */
+  color: #E0E0E0 !important; /* neutral light gray */
   font-weight: 500;
 }
 
-/* Links */
+/* ==============================
+   Links
+   ============================== */
 a {
   color: #1E90FF !important;
-  /* only links are blue */
   text-decoration: none;
 }
 
 a:hover {
   color: #FFD700 !important;
-  /* hover highlight in gold to match headers */
   text-decoration: underline;
 }
 
+/* ==============================
+   Buttons
+   ============================== */
 .btn-primary {
   background-color: var(--primary-color) !important;
   border-color: var(--primary-color) !important;
@@ -103,6 +104,9 @@ a:hover {
   color: #121212 !important;
 }
 
+/* ==============================
+   Form Inputs & Fieldsets
+   ============================== */
 fieldset,
 input,
 textarea,
@@ -120,12 +124,18 @@ textarea:focus,
   box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
 }
 
+/* ==============================
+   Hover effects
+   ============================== */
 .list-group-item:hover,
 .lesson-content:hover {
   background-color: #2c2c2c !important;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
 }
 
+/* ==============================
+   Alerts
+   ============================== */
 .alert {
   border-radius: 12px;
   padding: 1rem 1.5rem;
@@ -147,6 +157,9 @@ textarea:focus,
   color: var(--alert-warning-color) !important;
 }
 
+/* ==============================
+   Sidebar
+   ============================== */
 .lessons-sidebar {
   background-color: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -154,55 +167,162 @@ textarea:focus,
   overflow: hidden;
 }
 
-/* List group container */
 .lessons-sidebar .list-group {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-/* List group items (links) */
 .lessons-sidebar .list-group-item {
   background-color: var(--card-bg);
   border: none;
-  /* remove default borders for cleaner dark look */
   padding: 0;
-  /* we'll use padding on the link itself */
 }
 
-/* Sidebar links */
 .lessons-sidebar .list-group-item a {
   display: block;
-  /* fill entire item */
   padding: 0.75rem 1rem;
   color: var(--text-color);
   text-decoration: none;
   transition: background-color 0.2s, color 0.2s;
-  border-radius: 0;
-  /* optional: keep rectangular, matches Bootstrap */
 }
 
-/* Active link */
 .lessons-sidebar .list-group-item a.active {
   background-color: var(--accent-color);
-  /* yellow */
   color: #121212 !important;
-  /* black text */
   font-weight: 600;
 }
 
-/* Hover for non-active links */
 .lessons-sidebar .list-group-item a:hover {
   background-color: #2c2c2c;
-  /* dark gray hover */
   color: var(--accent-color);
-  /* yellow text */
 }
 
-/* Hover for active link */
 .lessons-sidebar .list-group-item a.active:hover {
   background-color: #e6ac00;
-  /* slightly darker orange */
   color: #121212 !important;
-  /* black text */
+}
+
+/* ==============================
+   Mobile / Responsive Adjustments
+   ============================== */
+@media (max-width: 992px) {
+  .container,
+  .w-75 {
+    width: 100% !important;
+    padding: 0.75rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container,
+  .w-75,
+  .lesson-content,
+  .list-group-item {
+    width: 100% !important;
+    padding: 0.5rem !important;
+  }
+
+  .lessons-sidebar {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .lessons-sidebar .list-group-item a {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Optional: very small phones */
+@media (max-width: 480px) {
+  .container,
+  .w-75,
+  .lesson-content,
+  .list-group-item {
+    padding: 0.25rem !important;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+
+  h3, h4, h5 {
+    font-size: 1.1rem;
+  }
+}
+
+.lesson-content {
+  flex: 1;
+  margin-left: 1rem;
+  /* adjust spacing from sidebar */
+  padding: 2rem;
+  /* enough padding for readability */
+  min-width: 0;
+  /* prevents flex shrinking issues */
+}
+
+@media (max-width: 768px) {
+  .lesson-content {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lessons-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    /* stack sidebar on top */
+    gap: 1rem;
+    /* spacing between sidebar and content */
+  }
+
+  .lessons-layout .lesson-content {
+    margin-left: 0 !important;
+    /* remove leftover spacing */
+    padding: 1rem;
+  }
+
+  .lessons-layout .lessons-sidebar {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .course-header {
+    flex-direction: column;
+    /* stack children vertically */
+    align-items: center;
+    /* center content horizontally */
+    gap: 1rem;
+    /* spacing between title, progress, button */
+    text-align: center;
+    /* optional: center text inside children */
+  }
+
+  .course-header .course-title,
+  .course-header>* {
+    width: 100%;
+  }
+
+  .course-header .btn {
+    width: 100%;
+    max-width: none;
+  }
+
+  /* Stack header vertically */
+  .course-overview-header {
+    flex-direction: column;
+    /* stack elements */
+    align-items: center;
+    /* center horizontally */
+    gap: 1rem;
+    /* spacing between title and progress */
+    text-align: center;
+    /* center text inside children */
+  }
+
+  /* Make h1 and progress full width */
+  .course-overview-header h1,
+  .course-overview-header>* {
+    width: 100%;
+  }
 }
