@@ -70,7 +70,7 @@ This project demonstrates clean Rails architecture, modern Hotwire-driven intera
 ## ⚡ Setup
 
 ```bash
-git clone <repo_url>
+git clone git@github.com:ajtran303/learnforge-lms.git
 cd learnforge-lms
 bundle install
 rails db:create db:migrate db:seed
