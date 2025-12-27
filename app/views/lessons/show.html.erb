@@ -24,8 +24,8 @@
     <h2 id="lesson-title" class="text-center"><%= current_user.completed_lessons.include?(@lesson) ? "#{@lesson.title} - Completed" : @lesson.title %></h2>
   </turbo-frame>
 
-  <article>
-    <p class="p-4"><%= simple_format @lesson.content %></p>
+  <article class="p-4">
+    <%= @lesson.content %>
   </article>
 
   <nav class="lesson-nav p-4" aria-label="Lesson navigation">
