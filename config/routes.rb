@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   patch "/courses/:id/unpublish", to: "courses#unpublish", as: :unpublish_course
 
   post "/courses/:id/enroll", to: "courses#enroll", as: :enroll_course
+  delete "/courses/:id/unenroll", to: "courses#unenroll", as: :unenroll_course
 
   get "/courses/:course_id/lessons/new", to: "lessons#new", as: :new_course_lesson
   post "/courses/:course_id/lessons", to: "lessons#create", as: :course_lessons

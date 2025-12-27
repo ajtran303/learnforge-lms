@@ -66,6 +66,14 @@ class CoursesController < ApplicationController
     redirect_to course_lesson_show_path(@course, @course.lessons.first), notice: "You have successfully enrolled in the course!"
   end
 
+  def unenroll
+    @course = Course.find(params[:id])
+    current_user.enrolled_courses.delete(@course)
+    current_user.lesson_completions.joins(:lesson).where(lessons: { course_id: @course.id }).destroy_all
+
+    redirect_to course_path(@course), notice: "You have successfully unenrolled from the course"
+  end
+
   private
 
   def require_login
