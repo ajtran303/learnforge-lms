@@ -1,0 +1,19 @@
+<%= turbo_stream.replace "flash" do %>
+  <%= render "shared/flash" %>
+<% end %>
+
+<%= turbo_stream.replace "enrollment_status" do %>
+  <turbo-frame id="enrollment_status">
+    <%= render "courses/enrollment_status", course: @course %>
+  </turbo-frame>
+<% end %>
+
+<%= turbo_stream.replace "course_lessons" do %>
+  <turbo-frame id="course_lessons">
+    <h2 class="text-center">Lessons</h2>
+
+    <turbo-frame id="lessons">
+      <%= render "lessons/lessons", lessons: @course.lessons %>
+    </turbo-frame>
+  </turbo-frame>
+<% end %>

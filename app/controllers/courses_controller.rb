@@ -62,8 +62,24 @@ class CoursesController < ApplicationController
   def enroll
     @course = Course.find(params[:id])
     current_user.enrolled_courses << @course unless current_user.enrolled_courses.include?(@course)
+    flash.now[:notice] = "You have successfully enrolled in the course!"
 
-    redirect_to course_lesson_show_path(@course, @course.lessons.first), notice: "You have successfully enrolled in the course!"
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to course_path(@course), notice: "You have successfully enrolled in the course!" }
+    end
+  end
+
+  def unenroll
+    @course = Course.find(params[:id])
+    current_user.enrolled_courses.delete(@course)
+    current_user.lesson_completions.joins(:lesson).where(lessons: { course_id: @course.id }).destroy_all
+    flash.now[:notice] = "You have successfully unenrolled from the course"
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to course_path(@course), notice: "You have successfully unenrolled from the course" }
+    end
   end
 
   private
