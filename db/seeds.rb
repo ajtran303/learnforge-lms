@@ -25,8 +25,14 @@ create(:user,
   password_confirmation: "password"
 )
 
-def generate_content
-  3.times.map { Faker::Lorem.paragraph(sentence_count: 16) }.join("\n\n")
+def generate_rich_content
+  paragraphs = 3.times.map { "<p>#{Faker::Lorem.paragraph(sentence_count: 8)}</p>" }
+
+  # Add some formatting variety
+  intro = "<h2>Overview</h2>"
+  bullet_points = "<ul>" + 3.times.map { "<li>#{Faker::Lorem.sentence}</li>" }.join + "</ul>"
+
+  [intro, paragraphs[0], bullet_points, "<h2>Details</h2>", paragraphs[1], paragraphs[2]].join("\n")
 end
 
 puts "Creating courses and lessons..."
@@ -43,7 +49,7 @@ puts "Creating courses and lessons..."
     8.times do |i|
       create(:lesson,
         title: "#{Faker::Lorem.words(number: 4).join(" ") + " #{i + 1}"}".titleize,
-        content: generate_content,
+        content: generate_rich_content,
         course: course
       )
     end
