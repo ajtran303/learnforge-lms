@@ -23,12 +23,16 @@ RSpec.describe "Unenroll from Course", type: :system do
     it "unenrolls the learner from the course" do
       visit course_path(course)
 
+      expect(page).to have_content("Lessons")
+
       click_button "Unenroll"
 
       expect(learner.enrolled_courses.reload).not_to include(course)
       expect(page).to have_current_path(course_path(course))
       expect(page).to have_content("You have successfully unenrolled from the course")
-      expect(page).to have_button("Enroll In This Course To View Lessons")
+      expect(page).to have_button("Enroll")
+      expect(page).not_to have_content("Lessons")
+      expect(page).to have_content("Enroll to view lessons")
     end
 
     it "resets lesson completion progress when unenrolling" do

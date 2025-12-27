@@ -13,17 +13,19 @@ RSpec.describe "Enroll in Course", type: :system do
   end
 
   context "when the learner is not enrolled in the course" do
-    it "enrolls the learner and redirects to the first lesson" do
+    it "enrolls the learner and stays on the course page" do
       visit course_path(course)
 
-      expect(page).to have_button("Enroll In This Course To View Lessons")
+      expect(page).to have_button("Enroll")
+      expect(page).not_to have_content("Lessons")
 
-      click_button "Enroll In This Course To View Lessons"
+      click_button "Enroll"
 
-      expect(learner.enrolled_courses).to include(course)
-
-      expect(page).to have_current_path(course_lesson_show_path(course, lesson1))
-      expect(page).to have_content("Lesson 1")
+      expect(learner.enrolled_courses.reload).to include(course)
+      expect(page).to have_current_path(course_path(course))
+      expect(page).to have_content("You have successfully enrolled in the course!")
+      expect(page).to have_content("Lessons")
+      expect(page).to have_button("Start Course")
     end
   end
 end

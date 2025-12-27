@@ -30,26 +30,20 @@
 <% if current_user.role == "learner" %>
   <p class="text-center"><strong>Instructor:</strong> <%= @course.user.email %></p>
 
-  <% if current_user.enrolled_courses.include?(@course) %>
-    <p class="text-center">You are already enrolled in this course.</p class="text-center">
-
-    <% lesson = next_uncompleted_lesson(@course, current_user) || @course.lessons.order(:id).first %>
-    <%= button_to course_entry_label(@course, current_user), course_lesson_show_path(@course, lesson), method: :get, class: "btn btn-primary w-100" %>
-    <%= button_to "Unenroll", unenroll_course_path(@course), method: :delete, class: "btn btn-outline-danger w-100 mt-2" %>
-  <% else %>
-    <p class="text-center">You are not enrolled in this course.</p>
-
-    <%= button_to "Enroll In This Course To View Lessons", enroll_course_path(@course), method: :post, class: "btn btn-primary w-100" %>
-  <% end %>
+  <turbo-frame id="enrollment_status">
+    <%= render "courses/enrollment_status", course: @course %>
+  </turbo-frame>
   <br>
 <% end %>
 
-<% if current_user.instructor? || current_user.enrolled_courses.include?(@course) %>
-  <h2 class="text-center">Lessons</h2>
+<turbo-frame id="course_lessons">
+  <% if current_user.instructor? || current_user.enrolled_courses.include?(@course) %>
+    <h2 class="text-center">Lessons</h2>
 
-  <turbo-frame id="lessons">
-    <%= render "lessons/lessons", lessons: @course.lessons %>
-  </turbo-frame>
-<% end %>
+    <turbo-frame id="lessons">
+      <%= render "lessons/lessons", lessons: @course.lessons %>
+    </turbo-frame>
+  <% end %>
+</turbo-frame>
 
 </div>

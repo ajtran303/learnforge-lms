@@ -2,15 +2,12 @@
 
 <h1 class="p-2 text-center">Sign In</h1>
 
+<%= render "shared/flash" %>
 
 <%= form_with url: session_path, local: true do |f| %>
   <fieldset class="border p-4 rounded">
 
     <legend class="p-2 text-center">Log into your account</legend>
-
-    <% if flash[:alert] %>
-      <p class="alert alert-warning"><%= flash[:alert] %></p>
-    <% end %>
 
     <div class="container mx-auto">
 
@@ -36,7 +33,4 @@
   Not registered? <%= link_to "Sign up!", new_user_registration_path %>
 </div>
 
-<% if flash[:notice] %>
-  <p class="notice alert alert-info"><%= flash[:notice] %></p>
-<% end %>
 </div>

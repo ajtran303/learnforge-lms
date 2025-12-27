@@ -23,7 +23,7 @@ RSpec.describe "Course Detail Page", type: :system do
       expect(page).not_to have_content(lesson1.title)
       expect(page).not_to have_content(lesson2.title)
 
-      expect(page).to have_button("Enroll In This Course To View Lessons")
+      expect(page).to have_button("Enroll")
     end
 
     it "does not show enroll button if the learner is already enrolled" do
@@ -31,8 +31,8 @@ RSpec.describe "Course Detail Page", type: :system do
       login_as(learner)
       visit course_path(course)
 
-      expect(page).not_to have_button("Enroll In This Course To View Lessons")
-      expect(page).to have_content("You are already enrolled in this course.")
+      expect(page).not_to have_button("Enroll")
+      expect(page).to have_content("You are enrolled in this course.")
 
       expect(page).to have_content(lesson1.title)
       expect(page).to have_content(lesson2.title)
