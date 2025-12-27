@@ -1,73 +1,54 @@
-# LearnForge LMS (Ruby on Rails)
+# LearnForge LMS
 
-A lightweight Learning Management System built as a full-stack Rails MVP. Track dev progress on the [issues page](https://github.com/ajtran303/learnforge-lms/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acreated-asc).
+A lightweight Learning Management System built with Ruby on Rails. Track development progress on the [issues page](https://github.com/ajtran303/learnforge-lms/issues?q=is%3Aissue%20state%3Aopen%20sort%3Acreated-asc).
 
-Visit the app in production at: [https://learnforge-lms.onrender.com](https://learnforge-lms.onrender.com)
+**Live demo:** [https://learnforge-lms.onrender.com](https://learnforge-lms.onrender.com)
 
----
+## Overview
 
-## 🚀 Overview
+LearnForge LMS is a minimal, production-ready Learning Management System built with Ruby on Rails 8. It supports instructors and learners with role-based access, rich text lesson content, progress tracking, and course management.
 
-LearnForge LMS is a minimal, production-ready Learning Management System built with Ruby on Rails 8. It supports instructors and learners with role-based access, lesson progress tracking, and course management.
+This project demonstrates clean Rails architecture, Hotwire-driven interactivity, Action Text for rich content, and Test-Driven Development practices.
 
-This project demonstrates clean Rails architecture, modern Hotwire-driven interactivity, role-based access control, and professional full-stack development practices including Test-Driven Development (TDD).
+## Features
 
----
+### Authentication & Roles
+- Email/password authentication with bcrypt
+- Role-based access: **Learner** and **Instructor**
+- Protected routes and actions based on user role
 
-## 🧩 Features
-
-### 👤 Authentication & Roles
-- Email/password authentication using `bcrypt`
-- Roles: **Learner**, **Instructor**
-- Role-based access control throughout the app
-
-### 📚 Course Management (Instructor)
+### Course Management (Instructor)
 - Create, edit, and delete courses
-- Draft/published workflows for courses
-- Add, edit, and delete lessons with text content
-- Instructor dashboard showing draft and published courses
-- Inline lesson editing with Turbo frames
+- Draft/published workflow for courses
+- Rich text lesson editor with formatting toolbar
+- Image attachments in lessons via Action Text
+- Inline lesson editing with Turbo Frames
 
-### 🎓 Learning Experience (Learner)
-- Browse published courses only
-- Enroll in courses with one click
+### Learning Experience (Learner)
+- Browse published courses
+- Enroll and unenroll from courses
 - View course details and instructor info
 - Mark lessons as completed
-- Visual course progress bar and last-lesson tracking
-- Navigate lessons with previous/next buttons and sidebar
+- Visual progress bar with resume functionality
+- Lesson navigation with previous/next buttons and sidebar
+- Unenrolling resets lesson completion progress
 
-### 🔄 Real-time Interactivity
-- Turbo-powered updates for lessons, lesson completion, and course progress
-- Forms update dynamically without full-page reloads
+### Real-time Interactivity
+- Turbo-powered updates without full-page reloads
+- Instant enrollment/unenrollment feedback
+- Dynamic lesson completion and progress updates
+- Dismissible flash messages
 
----
+## Tech Stack
 
-## ⚙️ Tech Stack
-
-- **Backend:** Ruby on Rails 8.1
-- **Database:** PostgreSQL
-- **Frontend:** Turbo, Bootstrap 5
-- **Authentication:** `has_secure_password` (bcrypt)
-- **Testing:** RSpec, Capybara, Shoulda Matchers
+- **Backend:** Ruby on Rails 8.1, PostgreSQL
+- **Frontend:** Hotwire (Turbo + Stimulus), Bootstrap 5
+- **Rich Text:** Action Text, Trix Editor, Active Storage
+- **Authentication:** bcrypt (has_secure_password)
+- **Testing:** RSpec, Capybara, FactoryBot, Shoulda Matchers
 - **Deployment:** Render
 
----
-
-## 🏗️ Architecture
-
-**Backend**
-- RESTful Rails controllers
-- Model validations and associations
-- PostgreSQL schemas with foreign keys and constraints
-
-**Frontend**
-- Turbo for SPA-like navigation and partial updates
-- Bootstrap for responsive styling
-- Turbo frames for inline forms and updates
-
----
-
-## ⚡ Setup
+## Setup
 
 ```bash
 git clone git@github.com:ajtran303/learnforge-lms.git
@@ -79,33 +60,28 @@ rails server
 
 Visit http://localhost:3000
 
-Login with any of the following users:
+### Demo Accounts
 
 ```
-instructor1@example.com    password
-instructor2@example.com    password
-student@example.com        password
+instructor1@example.com / password (Instructor)
+instructor2@example.com / password (Instructor)
+student@example.com / password (Learner)
 ```
 
-## 🧪 Running Tests
+## Running Tests
+
 ```bash
 bundle exec rspec
 ```
 
-Includes model, system, and integration tests for:
-- Courses, lessons, and enrollment
-- Lesson completion and course progress
+Test coverage includes:
+- Model validations and associations
+- Course and lesson management
+- Enrollment and unenrollment
+- Lesson completion and progress tracking
 - Role-based access control
-- Authentication and user registration
+- User authentication and registration
 
-## 🤝 Contributing
-
-This is a solo portfolio project, but contributions and issues are welcome.
-
-## 📄 License
+## License
 
 MIT License
-
-## ⭐ Support
-
-If you find this project helpful or interesting, please consider starring ⭐ the repository!
