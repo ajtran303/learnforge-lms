@@ -15,9 +15,9 @@
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
-  <div>
+  <div class="mb-3" data-controller="trix-upload">
     <%= f.label :content, class: "form-label" %>
-    <%= f.text_area :content, class: "form-control" %>
+    <%= f.rich_text_area :content %>
   </div>
 
   <%= f.submit lesson.persisted? ? "Update Lesson" : "Create Lesson", class: "btn btn-primary w-100" %>

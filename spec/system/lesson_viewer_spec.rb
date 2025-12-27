@@ -58,7 +58,7 @@ RSpec.describe "Lesson Viewer", type: :system do
 
       expect(page).to have_content(course.title)
       expect(page).to have_content(lesson1.title)
-      expect(page).to have_content(lesson1.content)
+      expect(page).to have_content(lesson1.content.to_plain_text)
     end
 
     it "shows a sidebar with all the lessons" do
