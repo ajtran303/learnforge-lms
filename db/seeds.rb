@@ -32,7 +32,7 @@ def generate_rich_content
   intro = "<h2>Overview</h2>"
   bullet_points = "<ul>" + 3.times.map { "<li>#{Faker::Lorem.sentence}</li>" }.join + "</ul>"
 
-  [intro, paragraphs[0], bullet_points, "<h2>Details</h2>", paragraphs[1], paragraphs[2]].join("\n")
+  [ intro, paragraphs[0], bullet_points, "<h2>Details</h2>", paragraphs[1], paragraphs[2] ].join("\n")
 end
 
 puts "Creating courses and lessons..."

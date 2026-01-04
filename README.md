@@ -13,11 +13,13 @@ This project demonstrates clean Rails architecture, Hotwire-driven interactivity
 ## Features
 
 ### Authentication & Roles
+
 - Email/password authentication with bcrypt
 - Role-based access: **Learner** and **Instructor**
 - Protected routes and actions based on user role
 
 ### Course Management (Instructor)
+
 - Create, edit, and delete courses
 - Draft/published workflow for courses
 - Rich text lesson editor with formatting toolbar
@@ -25,6 +27,7 @@ This project demonstrates clean Rails architecture, Hotwire-driven interactivity
 - Inline lesson editing with Turbo Frames
 
 ### Learning Experience (Learner)
+
 - Browse published courses
 - Enroll and unenroll from courses
 - View course details and instructor info
@@ -34,6 +37,7 @@ This project demonstrates clean Rails architecture, Hotwire-driven interactivity
 - Unenrolling resets lesson completion progress
 
 ### Real-time Interactivity
+
 - Turbo-powered updates without full-page reloads
 - Instant enrollment/unenrollment feedback
 - Dynamic lesson completion and progress updates
@@ -60,7 +64,7 @@ rails server
 
 Visit http://localhost:3000
 
-### Demo Accounts
+### Dev Accounts
 
 ```
 instructor1@example.com / password (Instructor)
@@ -75,6 +79,7 @@ bundle exec rspec
 ```
 
 Test coverage includes:
+
 - Model validations and associations
 - Course and lesson management
 - Enrollment and unenrollment
